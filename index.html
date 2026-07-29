@@ -190,7 +190,8 @@ body{
 }
 .search-results .sr-item:last-child{ border-bottom:none; }
 .search-results .sr-item:hover{ background:var(--panel-2); }
-.search-results .sr-icon{ width:28px;height:28px;border-radius:8px; background:linear-gradient(135deg,var(--accent-1),var(--accent-2)); display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0;}
+.search-results .sr-icon{ width:30px;height:30px;border-radius:8px; background:#fff; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; overflow:hidden; padding:4px;}
+.search-results .sr-icon img{ width:100%; height:100%; object-fit:contain;}
 .search-results .sr-name{ font-size:13px; font-weight:600; }
 .search-results .sr-cat{ font-size:11px; color:var(--text-faint); }
 .search-results .sr-empty{ padding:16px; font-size:13px; color:var(--text-faint); text-align:center; }
@@ -280,10 +281,14 @@ body{
 .card:hover{ transform:translateY(-3px); border-color:var(--border-strong); box-shadow:var(--shadow); }
 .card:hover::before{ opacity:1; }
 .card-icon{
-  width:42px;height:42px;border-radius:11px; flex-shrink:0;
+  width:44px;height:44px;border-radius:11px; flex-shrink:0;
   display:flex;align-items:center;justify-content:center; font-size:16px; font-weight:700;
-  color:#080b14; font-family:'Space Grotesk',sans-serif;
+  color:#080b14; font-family:'Space Grotesk',sans-serif; position:relative;
+  background:#fff; overflow:hidden; padding:6px;
 }
+.card-icon img{ width:100%; height:100%; object-fit:contain; display:block; }
+.card-icon.fallback{ padding:0; }
+.card-icon.fallback img{ display:none; }
 .card-body{ min-width:0; position:relative; z-index:1;}
 .card-body h3{ font-size:14.5px; font-weight:600; margin-bottom:3px; display:flex; align-items:center; gap:6px; flex-wrap:wrap;}
 .badge{ font-size:9px; font-family:'JetBrains Mono',monospace; padding:2px 6px; border-radius:5px; letter-spacing:.5px; }
@@ -330,7 +335,35 @@ body{
   width:100%; aspect-ratio:1/1; border-radius:20px; border:1px solid var(--border-strong);
   display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif;
   font-size:54px; font-weight:700; color:#080b14; box-shadow:var(--shadow);
+  background:#fff; overflow:hidden; padding:26px;
 }
+.detail-thumb img{ width:100%; height:100%; object-fit:contain; }
+
+/* FAQ */
+.faq-item{ background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px 18px; margin-bottom:10px;}
+.faq-item h4{ font-size:14px; display:flex; align-items:center; gap:8px; font-family:'Space Grotesk',sans-serif; margin-bottom:8px;}
+.faq-item h4::before{ content:"?"; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,var(--accent-1),var(--accent-2)); color:#080b14; font-weight:700; font-size:12px; flex-shrink:0;}
+.faq-item p{ font-size:13.5px; color:var(--text-dim); line-height:1.65;}
+
+/* How-to methods */
+.howto-block{ background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin-bottom:12px;}
+.howto-block h4{ font-family:'Space Grotesk',sans-serif; font-size:14.5px; margin-bottom:10px; color:var(--accent-2);}
+.howto-block ol{ list-style:none; counter-reset:step; padding:0;}
+.howto-block ol li{ counter-increment:step; font-size:13.5px; color:var(--text-dim); line-height:1.6; padding:5px 0 5px 30px; position:relative;}
+.howto-block ol li::before{ content:counter(step); position:absolute; left:0; top:6px; width:22px; height:22px; border-radius:6px; background:var(--panel-2); border:1px solid var(--border-strong); display:flex; align-items:center; justify-content:center; font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--accent-2); font-weight:600;}
+
+/* Ressource article view */
+.article{ max-width:820px; margin:0 auto; padding:28px;}
+.article h1{ font-family:'Space Grotesk',sans-serif; font-size:32px; margin-bottom:10px; letter-spacing:-.4px;}
+.article .meta{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:1px; margin-bottom:24px;}
+.article-card{ background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-bottom:14px;}
+.article-card h3{ font-family:'Space Grotesk',sans-serif; font-size:17px; margin-bottom:6px;}
+.article-card .date{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;}
+.article-card p{ font-size:14px; color:var(--text-dim); line-height:1.65;}
+.comp-table{ width:100%; border-collapse:collapse; margin-top:10px; font-size:13.5px;}
+.comp-table th, .comp-table td{ border:1px solid var(--border); padding:10px 12px; text-align:left;}
+.comp-table th{ background:var(--panel-2); font-family:'Space Grotesk',sans-serif;}
+.comp-table td:first-child{ font-weight:600;}
 .detail-tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
 .tag-pill{
   font-size:11px; font-family:'JetBrains Mono',monospace; padding:5px 11px; border-radius:999px;
@@ -386,7 +419,8 @@ body{
 .related-tools{ display:flex; flex-direction:column; gap:10px; }
 .related-item{ display:flex; align-items:center; gap:10px; cursor:pointer; padding:6px; border-radius:10px; }
 .related-item:hover{ background:var(--panel-2); }
-.related-item .ri-icon{ width:30px;height:30px;border-radius:8px; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0;}
+.related-item .ri-icon{ width:32px;height:32px;border-radius:8px; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; background:#fff; overflow:hidden; padding:4px;}
+.related-item .ri-icon img{ width:100%; height:100%; object-fit:contain;}
 .related-item .ri-name{ font-size:13px; font-weight:600; }
 
 .detail-ad{
@@ -443,9 +477,9 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
     <div id="sidebarNav"></div>
 
     <div class="nav-group-label">Ressources</div>
-    <a class="nav-link" href="#"><span class="ico">▤</span> Actualités IA du jour</a>
-    <a class="nav-link" href="#"><span class="ico">▥</span> Comparatifs &amp; tests</a>
-    <a class="nav-link" href="#"><span class="ico">▧</span> Guides &amp; tutoriels</a>
+    <a class="nav-link" href="#" onclick="openResource('news');return false;"><span class="ico">▤</span> Actualités IA du jour</a>
+    <a class="nav-link" href="#" onclick="openResource('compare');return false;"><span class="ico">▥</span> Comparatifs &amp; tests</a>
+    <a class="nav-link" href="#" onclick="openResource('guides');return false;"><span class="ico">▧</span> Guides &amp; tutoriels</a>
 
     <div class="side-ad">
       <span class="ad-label">Publicité</span>
@@ -513,6 +547,9 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
 
     <!-- ============ DETAIL VIEW ============ -->
     <div id="detailView" class="detail hidden"></div>
+
+    <!-- ============ RESSOURCE VIEW ============ -->
+    <div id="resourceView" class="hidden"></div>
 
   </main>
 </div>
@@ -841,7 +878,628 @@ const TOOLS = [
     desc:"Le Chat est l'assistant conversationnel de Mistral AI, entreprise française, qui met l'accent sur la rapidité de réponse, la souveraineté des données européennes et des modèles partiellement ouverts.",
     features:["Réponses générées à très grande vitesse","Recherche web et citations de sources","Génération de documents et de code","Hébergement des données conforme au cadre européen"],
     pricing:[{p:'Gratuit',price:'0 $',d:'Accès de base'},{p:'Pro',price:'~14,99 $/mois',d:'Usage étendu et fonctions avancées'}] },
+
+  // ============ AJOUTS ============
+  { id:'deepseek', name:'DeepSeek', category:'chat', badge:'new', tagline:"Assistant IA chinois open source, réputé pour son rapport qualité/prix.",
+    website:'https://chat.deepseek.com', tags:['Open source','Raisonnement','Chine'],
+    desc:"DeepSeek propose des modèles open source performants (DeepSeek-V3, R1) et un assistant conversationnel gratuit, particulièrement performant en raisonnement mathématique et en code.",
+    features:["Modèles open source téléchargeables (poids ouverts)","Mode raisonnement approfondi (R1) très performant en maths","API à un tarif nettement inférieur aux concurrents","Recherche web intégrée dans l'app"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Chat web illimité'},{p:'API',price:"~0,14 $/M tokens",d:"Tarif d'entrée parmi les plus bas du marché"}] },
+
+  { id:'qwen', name:'Qwen (Tongyi)', category:'chat', badge:'', tagline:"Famille de modèles ouverts et assistant conversationnel d'Alibaba.",
+    website:'https://chat.qwen.ai', tags:['Alibaba','Open source','Multilingue'],
+    desc:"Qwen (通义千问) est la famille de LLM d'Alibaba, disponible en modèles open source et via un assistant conversationnel doté d'outils avancés (image, vidéo, code).",
+    features:["Nombreux modèles open source (Qwen2, Qwen2.5, Qwen-VL)","Support multilingue solide, notamment chinois et anglais","Fonctions intégrées : génération d'image et de vidéo","Contexte étendu (jusqu'à 128k tokens)"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Accès web complet'},{p:'API Alibaba Cloud',price:"À l'usage",d:'Tarification par tokens'}] },
+
+  { id:'poe', name:'Poe', category:'chat', badge:'', tagline:"Agrégateur qui rassemble des dizaines de modèles IA dans une seule app.",
+    website:'https://poe.com', tags:['Multi-modèles','Quora','Bots'],
+    desc:"Poe, développé par Quora, rassemble en une seule interface la plupart des grands modèles IA (GPT, Claude, Gemini, Llama…) et permet de créer ses propres bots.",
+    features:["Accès unifié à GPT-4, Claude, Gemini, Grok, Llama, etc.","Création de bots personnalisés avec prompt système","Chat multi-modèles côte à côte pour comparer","Applications mobile et desktop synchronisées"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Quota quotidien réparti entre les modèles'},{p:'Premium',price:'~20 $/mois',d:'~1M points/mois sur tous les modèles'}] },
+
+  { id:'meta-ai', name:'Meta AI', category:'chat', badge:'', tagline:"Assistant conversationnel de Meta, basé sur les modèles Llama.",
+    website:'https://www.meta.ai', tags:['Meta','Llama','WhatsApp'],
+    desc:"Meta AI est l'assistant intégré à WhatsApp, Messenger et Instagram, propulsé par les modèles Llama de Meta et capable de générer texte et images.",
+    features:["Intégré nativement à WhatsApp, Messenger, Instagram","Génération d'image (Imagine) instantanée","Recherche web pour des réponses à jour","Fonctionne dans les conversations de groupe"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Gratuit sur toutes les plateformes Meta'}] },
+
+  // Image ajouts
+  { id:'stablediffusion', name:'Stable Diffusion', category:'image', badge:'', tagline:"Modèle de génération d'image open source, très personnalisable.",
+    website:'https://stability.ai', tags:['Open source','Stability AI','Local'],
+    desc:"Stable Diffusion est le modèle de génération d'image open source de référence, exécutable en local et à la base d'un vaste écosystème d'outils (Automatic1111, ComfyUI, Fooocus).",
+    features:["Modèle open source exécutable localement (GPU)","Écosystème riche : LoRA, ControlNet, IP-Adapter","Fine-tuning possible sur son propre style","Nombreuses interfaces (A1111, ComfyUI, Forge)"],
+    pricing:[{p:'Open source',price:'0 $',d:'Auto-hébergement gratuit'},{p:'Stability API',price:"À l'usage",d:'Facturation par crédits'}] },
+
+  { id:'flux', name:'Flux (Black Forest Labs)', category:'image', badge:'new', tagline:"Modèle image open source de nouvelle génération, très réaliste.",
+    website:'https://blackforestlabs.ai', tags:['Open source','Réalisme','FLUX.1'],
+    desc:"Flux (FLUX.1), développé par Black Forest Labs (fondateurs de Stable Diffusion), est un modèle de génération d'image reconnu pour son réalisme photographique et son rendu de texte impeccable.",
+    features:["Rendu photographique très proche du réel","Excellent rendu du texte dans l'image","Variantes ouvertes (Schnell) et Pro (API)","Facilement intégrable à ComfyUI"],
+    pricing:[{p:'Schnell',price:'Gratuit',d:'Version open source'},{p:'API Pro',price:"À l'usage",d:'Facturation par image via bfl.ml ou Replicate'}] },
+
+  { id:'krea', name:'Krea', category:'image', badge:'new', tagline:"Génération et édition d'image en temps réel, façon canvas créatif.",
+    website:'https://www.krea.ai', tags:['Temps réel','Canvas','Enhance'],
+    desc:"Krea propose une interface créative où l'on dessine, prompt et enhance des images en temps réel, avec un rendu qui se met à jour à chaque geste.",
+    features:["Génération en temps réel pendant qu'on dessine","Enhance : upscale et amélioration détaillée","Génération vidéo intégrée","Style de marque personnalisable"],
+    pricing:[{p:'Free',price:'0 $',d:'Générations quotidiennes limitées'},{p:'Basic',price:'~10 $/mois',d:'Crédits mensuels étendus'},{p:'Pro',price:'~35 $/mois',d:'Génération prioritaire'}] },
+
+  { id:'canva', name:'Canva Magic Studio', category:'image', badge:'', tagline:"Suite d'outils IA intégrée à l'éditeur graphique grand public Canva.",
+    website:'https://www.canva.com/magic-studio/', tags:['Design','Templates','Grand public'],
+    desc:"Canva Magic Studio regroupe les fonctions IA de Canva : génération d'image, redimensionnement magique, effacement d'objet, rédaction et traduction, dans un éditeur no-code très accessible.",
+    features:["Magic Media : génération image et vidéo intégrée","Magic Edit : ajout/suppression d'éléments dans une image","Magic Resize : adaptation automatique multi-formats","Magic Write : assistant de rédaction contextuel"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Fonctions IA limitées'},{p:'Pro',price:'~12 $/mois',d:'Accès complet à Magic Studio'}] },
+
+  { id:'recraft', name:'Recraft', category:'image', badge:'new', tagline:"Génération d'image et de vecteurs, orientée design produit.",
+    website:'https://www.recraft.ai', tags:['Vecteur','Design','Illustration'],
+    desc:"Recraft se distingue par sa capacité à générer des illustrations vectorielles (SVG), des icônes et des maquettes, avec un contrôle fin du style et de la charte graphique.",
+    features:["Génération de vecteurs SVG éditables","Styles personnalisés à partir d'images de référence","Mockups produits et packaging","Rendu de texte typographique de qualité"],
+    pricing:[{p:'Free',price:'0 $',d:'50 crédits/jour'},{p:'Basic',price:'~10 $/mois',d:'Crédits étendus'},{p:'Advanced',price:'~30 $/mois',d:'Usage commercial pro'}] },
+
+  // Vidéo ajouts
+  { id:'veo', name:'Veo (Google)', category:'video', badge:'new', tagline:"Modèle de génération vidéo haute qualité de Google DeepMind.",
+    website:'https://deepmind.google/technologies/veo/', tags:['Google','DeepMind','HD'],
+    desc:"Veo est le modèle de génération vidéo de Google DeepMind, capable de produire des clips en 1080p avec un contrôle cinématographique du cadrage et du mouvement de caméra.",
+    features:["Génération jusqu'à 1080p, clips de plusieurs secondes","Compréhension des termes cinématographiques (dolly, aerial…)","Intégration avec VideoFX et l'app Gemini","Cohérence temporelle solide"],
+    pricing:[{p:'Via Gemini',price:'~19,99 $/mois',d:'Inclus dans Google AI Pro'},{p:'Vertex API',price:"À l'usage",d:'Facturation par seconde générée'}] },
+
+  { id:'luma', name:'Luma Dream Machine', category:'video', badge:'', tagline:"Génération vidéo à partir de texte ou d'image, cinématique et fluide.",
+    website:'https://lumalabs.ai/dream-machine', tags:['Cinéma','Image-vers-vidéo','Luma'],
+    desc:"Dream Machine de Luma Labs génère des vidéos réalistes à partir d'un texte ou d'une image, avec un rendu très cinématique et des mouvements de caméra convaincants.",
+    features:["Génération image-vers-vidéo cohérente","Extension et remixage de clips","Keyframes : contrôle du plan de départ et d'arrivée","Rendu très fluide sur les mouvements de caméra"],
+    pricing:[{p:'Free',price:'0 $',d:'30 générations/mois'},{p:'Standard',price:'~9,99 $/mois',d:'150 générations'},{p:'Premier',price:'~99 $/mois',d:'2 000 générations, usage commercial'}] },
+
+  { id:'hailuo', name:'Hailuo (MiniMax)', category:'video', badge:'', tagline:"Génération vidéo IA de MiniMax, réputée pour la fluidité du mouvement.",
+    website:'https://hailuoai.video', tags:['MiniMax','Chine','Physique'],
+    desc:"Hailuo AI, développé par la startup chinoise MiniMax, produit des vidéos très fluides à partir d'un prompt texte ou d'une image de départ, avec une bonne physique du mouvement.",
+    features:["Génération vidéo à partir de texte ou d'image","Bonne gestion des mouvements complexes","Cadre 6 secondes en haute définition","Application mobile disponible"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Crédits quotidiens limités'},{p:'Standard',price:'~10 $/mois',d:'Crédits mensuels étendus'}] },
+
+  { id:'invideo', name:'InVideo AI', category:'video', badge:'', tagline:"Génération de vidéos courtes à partir d'un simple prompt texte.",
+    website:'https://invideo.io/ai/', tags:['Vidéos courtes','Marketing','Templates'],
+    desc:"InVideo AI transforme un prompt texte en vidéo complète (voix off, sous-titres, plans B-roll), particulièrement adaptée aux contenus courts type YouTube Shorts et Reels.",
+    features:["Vidéo complète générée depuis un prompt (script, voix, images)","Édition par instruction en langage naturel","Bibliothèque de médias stock intégrée","Export multi-formats (vertical, carré, horizontal)"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'10 min/semaine avec filigrane'},{p:'Plus',price:'~28 $/mois',d:'50 min IA/mois sans filigrane'},{p:'Max',price:'~48 $/mois',d:'150 min IA/mois'}] },
+
+  // Audio ajouts
+  { id:'playht', name:'PlayHT', category:'audio', badge:'', tagline:"Synthèse vocale ultra-réaliste et voix conversationnelles en temps réel.",
+    website:'https://play.ht', tags:['Voix','Temps réel','API'],
+    desc:"PlayHT propose des voix IA très réalistes, avec un modèle conversationnel à faible latence particulièrement adapté aux agents vocaux et assistants téléphoniques.",
+    features:["Voix conversationnelle à latence <300 ms","Clonage de voix instantané","Plus de 800 voix dans 140+ langues","API et SDK pour agents vocaux"],
+    pricing:[{p:'Free',price:'0 $',d:'Essai limité'},{p:'Creator',price:'~29 $/mois',d:'Génération étendue et clonage'},{p:'Enterprise',price:'Sur devis',d:'Volumes API élevés'}] },
+
+  { id:'assemblyai', name:'AssemblyAI', category:'audio', badge:'', tagline:"API de transcription et d'analyse audio de niveau production.",
+    website:'https://www.assemblyai.com', tags:['API','Transcription','Développeurs'],
+    desc:"AssemblyAI fournit des API de speech-to-text précises, avec détection de locuteurs, résumé automatique et modération de contenu, adaptées aux applications à fort volume.",
+    features:["Transcription haute précision multilingue","Diarisation (détection des locuteurs)","Résumé automatique et détection des sujets","Streaming en temps réel via WebSocket"],
+    pricing:[{p:'Free',price:'0 $',d:"$50 de crédits d'essai"},{p:'Pay-as-you-go',price:"~0,37 $/h",d:'Facturation à la seconde audio'}] },
+
+  // Code ajouts
+  { id:'lovable', name:'Lovable', category:'code', badge:'new', tagline:"Créez une app web complète par simple conversation avec l'IA.",
+    website:'https://lovable.dev', tags:['No-code','Full-stack','Prompt'],
+    desc:"Lovable transforme un prompt en application web complète (front + back), déployée en un clic, avec possibilité de connecter une base de données et une auth.",
+    features:["Génération d'app full-stack depuis un prompt","Aperçu instantané et itération par conversation","Intégration Supabase (auth, DB) native","Export du code et déploiement natif"],
+    pricing:[{p:'Free',price:'0 $',d:'5 messages/jour'},{p:'Starter',price:'~20 $/mois',d:'100 crédits mensuels'},{p:'Launch',price:'~50 $/mois',d:'250 crédits, projets illimités'}] },
+
+  { id:'bolt', name:'Bolt.new', category:'code', badge:'new', tagline:"IDE navigateur qui construit et exécute une app à partir d'un prompt.",
+    website:'https://bolt.new', tags:['StackBlitz','WebContainer','Full-stack'],
+    desc:"Bolt.new, développé par StackBlitz, permet à l'IA d'écrire et d'exécuter du code full-stack directement dans le navigateur (Node.js, npm) sans configuration.",
+    features:["Environnement Node complet dans le navigateur","Édition et exécution en direct par l'IA","Support de nombreux frameworks (React, Vite, Next…)","Déploiement direct vers Netlify"],
+    pricing:[{p:'Free',price:'0 $',d:'Jetons quotidiens limités'},{p:'Pro',price:'~20 $/mois',d:'10M jetons/mois'},{p:'Teams',price:'Sur devis',d:"Espaces d'équipe et privés"}] },
+
+  { id:'codeium', name:'Codeium', category:'code', badge:'', tagline:"Complétion de code gratuite pour développeurs individuels.",
+    website:'https://codeium.com', tags:['Complétion','Gratuit','Multi-IDE'],
+    desc:"Codeium propose une alternative gratuite à Copilot pour les développeurs individuels, avec complétion, chat et recherche de code dans les principaux IDE.",
+    features:["Complétion de code gratuite pour usage individuel","Support VS Code, JetBrains, Vim, Neovim","Chat contextuel avec compréhension du repo","Version entreprise auto-hébergeable"],
+    pricing:[{p:'Individual',price:'0 $',d:'Gratuit à vie pour les particuliers'},{p:'Teams',price:'~15 $/utilisateur/mois',d:'Contexte élargi et administration'},{p:'Enterprise',price:'Sur devis',d:'Déploiement on-premise'}] },
+
+  // Productivité ajouts
+  { id:'tldv', name:'tl;dv', category:'productivite', badge:'', tagline:"Enregistrement, transcription et résumé IA de réunions.",
+    website:'https://tldv.io', tags:['Réunions','Résumé','Zoom'],
+    desc:"tl;dv rejoint automatiquement vos réunions Zoom, Meet ou Teams pour les enregistrer, les transcrire et les résumer, avec extraction des points d'action.",
+    features:["Enregistrement et transcription automatique","Résumé structuré avec points d'action","Timestamps cliquables pour naviguer dans la réunion","Intégrations Notion, Slack, HubSpot, Salesforce"],
+    pricing:[{p:'Free',price:'0 $',d:'Réunions et transcriptions illimitées'},{p:'Pro',price:'~29 $/mois',d:'Résumés IA illimités'},{p:'Business',price:'~59 $/mois',d:"Analytics d'équipe"}] },
+
+  { id:'tome', name:'Tome', category:'productivite', badge:'', tagline:"Création de présentations narratives assistée par IA.",
+    website:'https://tome.app', tags:['Présentations','Storytelling','Slides'],
+    desc:"Tome permet de créer des présentations et documents narratifs à partir d'un simple prompt, avec un design moderne et la possibilité d'inclure des éléments interactifs.",
+    features:["Génération de deck complet depuis un prompt","Contenu narratif adapté à la vente et au pitch","Éléments interactifs (vidéos, prototypes)","Partage web instantané avec analytics"],
+    pricing:[{p:'Free',price:'0 $',d:"500 crédits d'IA"},{p:'Pro',price:'~16 $/mois',d:'Génération illimitée et marque personnalisée'}] },
+
+  // Agents ajouts
+  { id:'genspark', name:'Genspark', category:'agents', badge:'new', tagline:"Agent IA capable de rechercher, comparer et générer des « Sparkpages ».",
+    website:'https://www.genspark.ai', tags:['Recherche','Comparateur','Sparkpage'],
+    desc:"Genspark est un moteur de réponse agentique qui génère à la volée des « Sparkpages » synthétisant plusieurs sources sur un sujet, avec appels téléphoniques automatisés en option.",
+    features:["Génération de Sparkpages synthétiques par sujet","Appels téléphoniques automatisés (agent vocal)","Comparateur multi-produits","Recherche approfondie multi-sources"],
+    pricing:[{p:'Free',price:'0 $',d:'Crédits quotidiens'},{p:'Plus',price:'~24,99 $/mois',d:'Crédits mensuels étendus'}] },
+
+  { id:'operator', name:'ChatGPT Agent', category:'agents', badge:'new', tagline:"Agent d'OpenAI capable d'utiliser un navigateur pour vous.",
+    website:'https://openai.com', tags:['OpenAI','Navigateur','Autonomie'],
+    desc:"ChatGPT Agent (héritier d'Operator) permet à ChatGPT de piloter un navigateur virtuel pour réaliser des tâches à votre place : réservations, remplissage de formulaires, recherches structurées.",
+    features:["Navigation web autonome avec approbations utilisateur","Réservation, achat, remplissage de formulaires","Interaction visuelle avec les sites","Intégré au client ChatGPT (Plus/Pro)"],
+    pricing:[{p:'ChatGPT Plus',price:'20 $/mois',d:'Accès limité à l\'agent'},{p:'ChatGPT Pro',price:'200 $/mois',d:"Quota d'agent nettement supérieur"}] },
+
+  // Rédaction ajouts
+  { id:'notionwriter', name:'DeepL Write', category:'redaction', badge:'', tagline:"Assistant de reformulation et de correction, spécialiste des langues.",
+    website:'https://www.deepl.com/write', tags:['DeepL','Reformulation','Multilingue'],
+    desc:"DeepL Write, du spécialiste de la traduction, propose une reformulation et une correction très fines en français, anglais, allemand, espagnol et italien.",
+    features:["Reformulation de haute qualité par langue","Suggestions de ton (formel, décontracté, professionnel)","Détection des maladresses et anglicismes","Extensions navigateur et Office"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Textes courts, fonctions de base'},{p:'Pro',price:'~8,99 $/mois',d:'Textes longs et personnalisation du style'}] },
+
+  { id:'writesonic', name:'Writesonic', category:'redaction', badge:'', tagline:"Rédaction SEO, articles longs et Chatsonic tout-en-un.",
+    website:'https://writesonic.com', tags:['SEO','Article','Chatsonic'],
+    desc:"Writesonic combine rédaction SEO, article de blog long format et un chat IA (Chatsonic) avec recherche web pour créer du contenu optimisé pour Google.",
+    features:["AI Article Writer avec structure SEO","Chatsonic avec accès web temps réel","Extension navigateur pour rédiger partout","Analyse et brief SEO intégré"],
+    pricing:[{p:'Free',price:'0 $',d:'Essai limité'},{p:'Chatsonic',price:'~15 $/mois',d:'Accès chat premium'},{p:'Individual',price:'~20 $/mois',d:'Article generator complet'}] },
 ];
+
+/* Informations spécifiques par outil : méthodes d'utilisation + FAQ */
+const EXTRA_INFO = {
+  midjourney:{
+    howto:[
+      {t:"Méthode 1 : Discord", steps:["Créer ou se connecter à un compte Discord","Rejoindre le serveur Midjourney via midjourney.com/account","Rejoindre un canal #general ou #newbies","Taper /imagine puis décrire l'image souhaitée","Sélectionner la variante ou l'upscale à conserver"]},
+      {t:"Méthode 2 : Interface web", steps:["Se connecter sur midjourney.com/imagine (compte Discord ou Google)","Saisir un prompt dans la barre en haut","Ajuster le ratio et les paramètres avancés","Générer, éditer ou remixer directement dans le navigateur"]}
+    ],
+    faq:[
+      {q:"Midjourney propose-t-il une version gratuite ?", a:"Non, l'offre d'essai gratuite a été suspendue en raison de la charge sur les serveurs. Un abonnement est nécessaire pour générer des images."},
+      {q:"Faut-il obligatoirement Discord ?", a:"Non, depuis l'ouverture de l'interface web midjourney.com/imagine, il est possible d'utiliser Midjourney directement dans un navigateur, sans passer par Discord."},
+      {q:"Peut-on utiliser les images commercialement ?", a:"Oui, avec un abonnement payant, les images générées peuvent être utilisées à des fins commerciales (sauf pour les entreprises de plus d'un million de dollars de revenus, où le plan Pro/Mega est requis)."},
+      {q:"Existe-t-il une version française officielle ?", a:"Non, Midjourney n'a pas de version régionalisée pour le marché français. Les prompts peuvent être rédigés en français mais l'anglais donne souvent de meilleurs résultats."}
+    ]
+  },
+  chatgpt:{
+    howto:[
+      {t:"Utilisation web", steps:["Se rendre sur chatgpt.com et créer un compte","Choisir un modèle dans le sélecteur (GPT-4o, o1…)","Écrire une question ou déposer un fichier / une image","Consulter la réponse et itérer par messages successifs"]},
+      {t:"Applications mobiles et desktop", steps:["Installer l'app ChatGPT (iOS, Android, macOS, Windows)","Se connecter avec son compte","Utiliser le mode vocal ou le partage d'écran (Advanced Voice)","Activer les GPTs personnalisés pour des cas spécialisés"]}
+    ],
+    faq:[
+      {q:"ChatGPT est-il gratuit ?", a:"Oui, une version gratuite existe avec accès aux modèles de base et à un quota quotidien limité. ChatGPT Plus (20 $/mois) débloque les modèles avancés et des quotas supérieurs."},
+      {q:"ChatGPT peut-il générer des images ?", a:"Oui, DALL·E 3 est intégré : il suffit de demander en langage naturel dans la conversation."},
+      {q:"Les données saisies servent-elles à entraîner le modèle ?", a:"Par défaut oui, mais il est possible de désactiver cet entraînement dans les paramètres, ou d'utiliser ChatGPT Team/Enterprise où les données ne sont jamais utilisées."},
+      {q:"Quelle différence entre GPT-4o et o1 ?", a:"GPT-4o est le modèle généraliste multimodal (texte, image, voix), tandis qu'o1 est un modèle de raisonnement qui prend plus de temps mais résout mieux les problèmes complexes."}
+    ]
+  },
+  claude:{
+    howto:[
+      {t:"Utilisation web", steps:["Se rendre sur claude.ai et créer un compte","Ouvrir une nouvelle conversation","Coller un long document ou une image pour analyse","Utiliser les Artifacts pour générer du code ou des visuels interactifs"]},
+      {t:"Claude Code (terminal)", steps:["Installer via npm install -g @anthropic-ai/claude-code","Lancer 'claude' dans le dossier du projet","Décrire la tâche à réaliser en langage naturel","Laisser Claude explorer le repo, modifier des fichiers et committer"]}
+    ],
+    faq:[
+      {q:"Claude a-t-il accès à internet ?", a:"Oui, Claude peut effectuer des recherches web (fonction Search) et fetch des URL pour lire une page précise."},
+      {q:"Qu'est-ce qu'un Artifact ?", a:"Un Artifact est un contenu structuré (code, document, HTML, SVG) affiché dans un panneau dédié à côté de la conversation, éditable et versionné."},
+      {q:"Claude est-il disponible en Europe ?", a:"Oui, Claude.ai et l'API Anthropic sont accessibles depuis l'Europe."},
+      {q:"Quelle est la taille de contexte de Claude ?", a:"Les modèles Claude actuels supportent jusqu'à 200 000 tokens (~500 pages) dans une seule conversation."}
+    ]
+  },
+  gemini:{
+    howto:[
+      {t:"Utilisation web", steps:["Se rendre sur gemini.google.com et se connecter","Choisir le modèle (2.5 Flash, 2.5 Pro)","Poser une question ou charger une image / un PDF","Utiliser Deep Research pour une recherche approfondie"]},
+      {t:"Intégration Google Workspace", steps:["Activer Gemini for Workspace","Ouvrir Docs, Sheets, Gmail","Cliquer sur l'icône Gemini pour rédiger, résumer, extraire","Utiliser Gemini dans Meet pour prendre des notes"]}
+    ],
+    faq:[
+      {q:"Gemini est-il gratuit ?", a:"Oui, une version gratuite donne accès aux modèles Flash. Google AI Pro (~19,99 $/mois) débloque les modèles Pro, Veo, Deep Research et une plus grande fenêtre de contexte."},
+      {q:"Quelle différence entre Gemini et Google Bard ?", a:"Bard a été renommé Gemini début 2024 ; il s'agit du même service, avec des modèles bien plus puissants aujourd'hui."},
+      {q:"Gemini peut-il générer des vidéos ?", a:"Oui, via l'intégration du modèle Veo dans l'app Gemini (offre payante)."},
+      {q:"Peut-on utiliser Gemini pour du code ?", a:"Oui, avec l'onglet Canvas et Gemini Code Assist dans les IDE."}
+    ]
+  },
+  copilot:{
+    howto:[
+      {t:"Installation dans VS Code", steps:["Installer l'extension « GitHub Copilot » depuis la marketplace","Se connecter avec son compte GitHub","Attendre les suggestions inline pendant la frappe","Presser Tab pour accepter, Alt+] pour voir les alternatives"]},
+      {t:"Copilot Chat", steps:["Ouvrir le panneau Copilot Chat (Ctrl+Alt+I)","Poser une question sur le code, coller un extrait ou @workspace pour tout le projet","Utiliser /explain, /fix, /tests pour des actions ciblées","Passer en mode Agent pour des modifications multi-fichiers"]}
+    ],
+    faq:[
+      {q:"Copilot est-il gratuit ?", a:"Oui, GitHub Copilot dispose depuis fin 2024 d'un plan gratuit avec quota limité de complétions et de messages chat."},
+      {q:"Quels IDE sont supportés ?", a:"VS Code, Visual Studio, JetBrains IDE (IntelliJ, PyCharm…), Neovim, Xcode et Eclipse."},
+      {q:"Copilot voit-il tout mon code ?", a:"Copilot envoie le contexte proche du curseur aux serveurs GitHub/OpenAI pour générer les suggestions. Un filtre peut être activé pour bloquer les correspondances de code public."},
+      {q:"Peut-on désactiver Copilot pour un projet ?", a:"Oui, un fichier .copilotignore ou les paramètres de l'extension permettent de désactiver Copilot sur des dossiers spécifiques."}
+    ]
+  },
+  suno:{
+    howto:[
+      {t:"Mode simple", steps:["Se connecter sur suno.com","Saisir une description (« pop électro triste, voix féminine »)","Laisser Suno générer paroles + musique","Écouter les deux variantes et télécharger la préférée"]},
+      {t:"Mode Custom", steps:["Activer le mode « Custom »","Écrire ses propres paroles (ou coller un texte)","Préciser le style musical dans un champ dédié","Générer, puis étendre le morceau (Extend) si besoin"]}
+    ],
+    faq:[
+      {q:"Peut-on utiliser les chansons commercialement ?", a:"Oui, avec les plans payants (Pro, Premier), les créations peuvent être utilisées commercialement. Le plan gratuit reste en usage personnel uniquement."},
+      {q:"Suno accepte-t-il les paroles en français ?", a:"Oui, Suno gère plusieurs langues dont le français, avec une bonne prononciation."},
+      {q:"Quelle est la durée maximale d'une chanson ?", a:"Chaque génération produit environ 2 minutes ; la fonction Extend permet de prolonger jusqu'à 4 minutes ou plus par incréments."},
+      {q:"Suno peut-il cloner ma voix ?", a:"Non, Suno ne propose pas de clonage vocal. Les voix sont générées par le modèle."}
+    ]
+  },
+  elevenlabs:{
+    howto:[
+      {t:"Synthèse vocale (TTS)", steps:["Se connecter sur elevenlabs.io","Ouvrir « Speech Synthesis »","Choisir une voix dans la bibliothèque","Coller le texte, ajuster stability/similarity, générer et télécharger"]},
+      {t:"Clonage de voix", steps:["Passer sur un plan Creator ou supérieur","Ouvrir « Voice Lab » puis « Add Voice » → Instant Voice Cloning","Uploader 1 à 5 min d'échantillon audio propre","Nommer la voix et l'utiliser ensuite comme n'importe quelle voix de la bibliothèque"]}
+    ],
+    faq:[
+      {q:"Combien de langues sont supportées ?", a:"ElevenLabs prend en charge plus de 30 langues, dont un français très naturel."},
+      {q:"Peut-on cloner la voix de n'importe qui ?", a:"Non, seuls les échantillons de voix dont on est propriétaire ou pour lesquels on a une autorisation explicite peuvent être clonés (les CGU l'imposent)."},
+      {q:"Peut-on utiliser les audios en commercial ?", a:"Oui à partir du plan Creator ; le plan gratuit est limité à un usage non commercial avec attribution."},
+      {q:"Existe-t-il une API ?", a:"Oui, une API REST et un SDK Node/Python permettent d'intégrer les voix dans une application."}
+    ]
+  },
+  cursor:{
+    howto:[
+      {t:"Prise en main", steps:["Télécharger Cursor sur cursor.com et l'installer","Importer les paramètres et extensions VS Code au premier lancement","Ouvrir un projet et presser Ctrl+K pour la génération inline","Presser Ctrl+L pour ouvrir le chat contextuel"]},
+      {t:"Mode Agent (Composer)", steps:["Ouvrir Composer (Ctrl+I)","Décrire la modification voulue sur plusieurs fichiers","Laisser l'agent proposer un plan puis des diffs","Accepter ou rejeter chaque changement fichier par fichier"]}
+    ],
+    faq:[
+      {q:"Cursor est-il gratuit ?", a:"Oui, le plan Hobby est gratuit avec un quota limité de requêtes IA. Le plan Pro (~20 $/mois) débloque un usage étendu et les modèles premium."},
+      {q:"Peut-on utiliser ses propres extensions VS Code ?", a:"Oui, Cursor est un fork de VS Code et supporte l'écrasante majorité des extensions et thèmes existants."},
+      {q:"Quels modèles sont proposés ?", a:"Cursor donne accès à Claude, GPT et Gemini via son abonnement. Il est aussi possible de brancher ses propres clés API."},
+      {q:"Cursor envoie-t-il mon code au cloud ?", a:"Oui pour les fonctions IA. Le mode Privacy garantit que le code n'est jamais utilisé pour entraîner les modèles."}
+    ]
+  },
+  perplexity:{
+    howto:[
+      {t:"Poser une question", steps:["Se rendre sur perplexity.ai","Saisir la question dans la barre de recherche","Consulter la réponse synthétique et les sources citées","Poser une question de suivi dans le même Thread"]},
+      {t:"Recherche approfondie (Pro Search)", steps:["Activer « Pro Search »","Perplexity décompose la requête en sous-questions","L'IA agrège les résultats et produit une synthèse détaillée","Exporter en PDF ou partager le Thread"]}
+    ],
+    faq:[
+      {q:"Perplexity est-il gratuit ?", a:"Oui, la version gratuite permet des recherches illimitées en mode standard. Pro (20 $/mois) débloque Pro Search illimité et l'accès aux modèles premium."},
+      {q:"Les sources sont-elles fiables ?", a:"Perplexity cite systématiquement ses sources ; il reste conseillé de vérifier les faits importants directement sur les liens fournis."},
+      {q:"Peut-on choisir le modèle IA utilisé ?", a:"Oui, en mode Pro, on peut choisir entre GPT-4, Claude, Grok et le modèle interne de Perplexity."},
+      {q:"Existe-t-il une app mobile ?", a:"Oui, sur iOS et Android, avec un mode vocal disponible."}
+    ]
+  },
+  runway:{
+    howto:[
+      {t:"Texte-vers-vidéo (Gen-4)", steps:["Se connecter sur app.runwayml.com","Choisir « Generate video »","Décrire la scène en anglais ou coller une image de départ","Choisir la durée et la vitesse de génération"]},
+      {t:"Outils de montage", steps:["Uploader une vidéo dans Assets","Utiliser « Remove Background » pour la rotoscopie","Appliquer Motion Brush pour animer une zone précise","Exporter en 1080p"]}
+    ],
+    faq:[
+      {q:"Y a-t-il une version gratuite ?", a:"Oui, un plan gratuit offre des crédits d'essai limités pour tester la génération vidéo."},
+      {q:"Quelle est la durée maximale d'une vidéo ?", a:"Les modèles Gen-4 produisent des clips de 5 à 10 secondes, extensibles via la fonction « Extend »."},
+      {q:"Runway est-il disponible en français ?", a:"L'interface est en anglais, mais les prompts en français fonctionnent (avec de meilleurs résultats en anglais)."},
+      {q:"Peut-on utiliser les vidéos commercialement ?", a:"Oui, à partir du plan Standard, l'usage commercial est autorisé."}
+    ]
+  },
+  sora:{
+    howto:[
+      {t:"Accéder à Sora", steps:["Souscrire à ChatGPT Plus ou Pro","Se rendre sur sora.com","Saisir un prompt décrivant la scène","Choisir durée, ratio et style, puis générer"]},
+      {t:"Storyboard", steps:["Ouvrir l'outil Storyboard","Décrire plusieurs plans successifs sur une timeline","Régler durée et transitions","Générer la vidéo enchaînée"]}
+    ],
+    faq:[
+      {q:"Sora est-il gratuit ?", a:"Non, Sora est inclus avec ChatGPT Plus (20 $/mois, quota limité) et Pro (200 $/mois, quota étendu)."},
+      {q:"Sora est-il disponible partout ?", a:"Non, Sora n'est pas disponible dans certains pays (Royaume-Uni, certains pays européens à son lancement). Vérifier la disponibilité selon la région."},
+      {q:"Quelle est la durée maximale ?", a:"Jusqu'à 20 secondes en Pro, 5 à 10 secondes en Plus, avec possibilité d'extension."},
+      {q:"Peut-on partir d'une image ?", a:"Oui, Sora accepte une image de départ pour animer une photo ou une illustration."}
+    ]
+  },
+  deepseek:{
+    howto:[
+      {t:"Chat web", steps:["Se rendre sur chat.deepseek.com et créer un compte","Choisir le modèle : Chat (V3) ou DeepThink (R1)","Poser une question ou coller un document","Activer la recherche web si besoin d'informations à jour"]},
+      {t:"API", steps:["Créer une clé API sur platform.deepseek.com","Utiliser une bibliothèque compatible OpenAI (le format d'API est identique)","Choisir 'deepseek-chat' ou 'deepseek-reasoner'","Intégrer les réponses dans son application"]}
+    ],
+    faq:[
+      {q:"DeepSeek est-il vraiment gratuit ?", a:"Oui, le chat web est entièrement gratuit et illimité. Seule l'API est facturée, à un tarif très bas."},
+      {q:"DeepSeek stocke-t-il mes conversations ?", a:"Les serveurs étant en Chine, les données sont soumises à la législation locale. Pour un usage sensible, préférer une exécution locale des poids ouverts."},
+      {q:"Peut-on exécuter DeepSeek en local ?", a:"Oui, les poids des modèles sont publiés en open source et exécutables via Ollama, vLLM ou llama.cpp (matériel exigeant pour V3/R1)."},
+      {q:"Le français est-il bien géré ?", a:"Oui, DeepSeek répond en français correctement, même s'il est prioritairement optimisé pour l'anglais et le chinois."}
+    ]
+  },
+  nanobanana:{
+    howto:[
+      {t:"Via l'app Gemini", steps:["Ouvrir gemini.google.com et se connecter","Cliquer sur l'icône image pour générer","Décrire l'image ou uploader une photo à éditer","Demander la modification en langage naturel"]},
+      {t:"Édition itérative", steps:["Générer une première image","Dans le même chat, demander « ajoute des lunettes de soleil »","Répéter les modifications tout en gardant la cohérence du personnage","Télécharger le résultat final"]}
+    ],
+    faq:[
+      {q:"D'où vient le nom Nano Banana ?", a:"« Nano Banana » est le surnom donné par la communauté au modèle image de Google (basé sur Gemini 2.5), avant sa dénomination officielle."},
+      {q:"C'est gratuit ?", a:"Un quota quotidien est offert gratuitement via Gemini. Google AI Pro (~19,99 $/mois) débloque plus de générations."},
+      {q:"Peut-on garder le même personnage sur plusieurs images ?", a:"Oui, c'est justement une des forces du modèle : la cohérence des personnages entre plusieurs générations."},
+      {q:"L'API est-elle disponible ?", a:"Oui, via Google AI Studio et Vertex AI, avec une facturation à l'image."}
+    ]
+  },
+  jasper:{
+    howto:[
+      {t:"Créer une voix de marque", steps:["Ouvrir Brand Voice dans Jasper","Uploader des exemples de contenus (site, blog, livre blanc)","Laisser Jasper extraire ton, style et vocabulaire","Utiliser cette voix dans toutes les générations futures"]},
+      {t:"Lancer une campagne", steps:["Choisir un template (email, landing, ads…)","Renseigner brief, cible et voix de marque","Générer plusieurs variantes","Éditer et exporter vers HubSpot, Google Docs ou WordPress"]}
+    ],
+    faq:[
+      {q:"Jasper est-il gratuit ?", a:"Non, mais un essai gratuit est proposé. Les plans démarrent à ~39 $/mois."},
+      {q:"Jasper écrit-il en français ?", a:"Oui, Jasper prend en charge plus de 30 langues dont le français."},
+      {q:"Y a-t-il une intégration SEO ?", a:"Oui, Jasper propose une intégration native avec SurferSEO pour optimiser les articles."},
+      {q:"Peut-on l'utiliser en équipe ?", a:"Oui, les plans Pro et Business incluent des espaces de travail collaboratifs avec validation éditoriale."}
+    ]
+  },
+  notionai:{
+    howto:[
+      {t:"Dans une page", steps:["Presser Espace sur une ligne vide","Choisir une action (brainstorm, résumé, traduction…)","Éditer la réponse ou demander une nouvelle version","Insérer dans la page"]},
+      {t:"Q&A sur l'espace de travail", steps:["Ouvrir Notion AI depuis n'importe quelle page","Poser une question sur le contenu de l'espace","L'IA fouille les pages accessibles et cite les sources","Cliquer sur les références pour vérifier"]}
+    ],
+    faq:[
+      {q:"Notion AI est-il inclus dans Notion ?", a:"Non, c'est un add-on payant à ajouter à un plan Notion existant (~8-10 $/utilisateur/mois)."},
+      {q:"Quels modèles sont utilisés ?", a:"Notion AI utilise plusieurs modèles (GPT-4, Claude) sous le capot, sans exposer le choix à l'utilisateur."},
+      {q:"L'IA peut-elle voir les pages privées ?", a:"Notion AI n'accède qu'aux pages auxquelles l'utilisateur a lui-même accès."},
+      {q:"Le français est-il supporté ?", a:"Oui, Notion AI comprend et répond en français de façon fluide."}
+    ]
+  },
+  dalle:{
+    howto:[
+      {t:"Depuis ChatGPT", steps:["Ouvrir une conversation ChatGPT (Plus ou gratuit avec quota)","Demander « génère une image de… »","Attendre la génération (~15 s par image)","Demander des retouches en langage naturel"]}
+    ],
+    faq:[
+      {q:"Peut-on utiliser DALL·E 3 gratuitement ?", a:"Oui, les utilisateurs gratuits de ChatGPT ont un quota quotidien limité de générations DALL·E 3."},
+      {q:"DALL·E 3 comprend-il bien le français ?", a:"Oui, il gère parfaitement les prompts en français."},
+      {q:"Les images ont-elles un watermark ?", a:"Elles portent des métadonnées C2PA d'identification IA, mais aucun watermark visible."},
+      {q:"Peut-on utiliser les images commercialement ?", a:"Oui, OpenAI accorde tous les droits d'usage (y compris commercial) sur les images générées."}
+    ]
+  },
+  ideogram:{
+    howto:[
+      {t:"Génération standard", steps:["Se connecter sur ideogram.ai","Saisir un prompt (idéalement avec le texte souhaité entre guillemets)","Choisir le style (Design, Réaliste, 3D, Illustration…)","Générer et upscaler la variante choisie"]}
+    ],
+    faq:[
+      {q:"Ideogram est-il gratuit ?", a:"Oui, un plan gratuit permet quelques générations quotidiennes."},
+      {q:"Pourquoi Ideogram est-il meilleur pour le texte ?", a:"Son modèle est entraîné spécifiquement pour rendre correctement les typographies, logos et affiches."},
+      {q:"Peut-on utiliser Magic Prompt ?", a:"Oui, cette fonction reformule automatiquement un prompt court pour améliorer la qualité du résultat."}
+    ]
+  },
+  leonardo:{
+    howto:[
+      {t:"Créer une image", steps:["Créer un compte sur leonardo.ai","Choisir un modèle (Phoenix, Kino XL, Anime XL…)","Écrire un prompt et régler les paramètres","Utiliser Canvas pour retoucher via inpainting"]}
+    ],
+    faq:[
+      {q:"Leonardo est-il gratuit ?", a:"Oui, 150 jetons quotidiens sont offerts sur le plan gratuit."},
+      {q:"Peut-on entraîner son propre style ?", a:"Oui, Leonardo permet le fine-tuning de modèles sur des jeux d'images personnels."},
+      {q:"Convient-il aux asset de jeu vidéo ?", a:"Oui, c'est l'une des principales cibles de Leonardo (concept art, textures, sprites)."}
+    ]
+  },
+  firefly:{
+    howto:[
+      {t:"Dans Photoshop", steps:["Ouvrir Photoshop 2024+ avec un abonnement Creative Cloud","Sélectionner une zone avec le lasso","Cliquer sur « Generative Fill »","Décrire l'élément à ajouter ou laisser vide pour supprimer"]}
+    ],
+    faq:[
+      {q:"Firefly est-il vraiment safe commercialement ?", a:"Adobe s'engage à indemniser ses clients Entreprise en cas de litige, grâce à un entraînement sur des contenus sous licence."},
+      {q:"Faut-il un abonnement Creative Cloud ?", a:"Non, firefly.adobe.com fonctionne aussi en standalone, avec un plan gratuit et un plan Premium."}
+    ]
+  },
+  pika:{
+    howto:[
+      {t:"Génération vidéo", steps:["Se connecter sur pika.art","Saisir un prompt ou uploader une image","Choisir un Pikaffect si on veut un effet spécifique","Générer et étendre le clip si besoin"]}
+    ],
+    faq:[
+      {q:"Pika est-il gratuit ?", a:"Oui, un plan gratuit avec filigrane permet de tester."},
+      {q:"Que sont les Pikaffects ?", a:"Des effets de transformation prédéfinis (fondre, gonfler, exploser…) appliqués à une image ou vidéo."}
+    ]
+  },
+  kling:{
+    howto:[
+      {t:"Génération", steps:["Créer un compte sur klingai.com","Saisir un prompt texte ou uploader une image","Choisir la durée (5s ou 10s) et le modèle","Utiliser Extend pour prolonger la scène"]}
+    ],
+    faq:[
+      {q:"Qui développe Kling ?", a:"Kuaishou, une entreprise chinoise (concurrent de TikTok en Chine)."},
+      {q:"Kling gère-t-il bien la physique ?", a:"Oui, c'est l'un de ses points forts : mouvements fluides et physique cohérente des objets."}
+    ]
+  },
+  heygen:{
+    howto:[
+      {t:"Vidéo avec avatar", steps:["Se connecter sur heygen.com","Choisir un avatar ou en créer un personnalisé","Coller ou écrire le script","Générer la vidéo et la traduire dans d'autres langues"]}
+    ],
+    faq:[
+      {q:"HeyGen peut-il cloner ma voix et mon visage ?", a:"Oui, avec une courte vidéo, l'outil crée un avatar personnalisé (plans payants)."},
+      {q:"Combien de langues sont supportées ?", a:"Plus de 40 langues pour le doublage automatique."}
+    ]
+  },
+  synthesia:{
+    howto:[
+      {t:"Créer une vidéo", steps:["Se connecter sur synthesia.io","Choisir un modèle de vidéo ou partir de zéro","Sélectionner un avatar et coller le script","Générer et exporter en MP4"]}
+    ],
+    faq:[
+      {q:"Synthesia convient aux formations d'entreprise ?", a:"Oui, c'est son cœur de cible avec des templates dédiés à l'onboarding et au e-learning."},
+      {q:"Peut-on créer un avatar de marque ?", a:"Oui, sur les plans Enterprise, un studio d'avatar personnalisé est disponible."}
+    ]
+  },
+  udio:{
+    howto:[
+      {t:"Générer un morceau", steps:["Créer un compte sur udio.com","Décrire le style musical dans le prompt","Générer, écouter les variantes","Utiliser Extend/Remix pour prolonger ou modifier"]}
+    ],
+    faq:[
+      {q:"Udio vs Suno ?", a:"Les deux se disputent la même niche. Udio est réputé pour une qualité audio légèrement supérieure, Suno pour la variété des styles."}
+    ]
+  },
+  murf:{
+    howto:[
+      {t:"Voix off", steps:["Se connecter sur murf.ai","Coller le script dans le studio","Choisir une voix et régler intonation/pauses","Exporter en MP3 ou WAV"]}
+    ],
+    faq:[
+      {q:"Murf gère-t-il le français ?", a:"Oui, plusieurs voix françaises masculines et féminines sont disponibles."}
+    ]
+  },
+  descript:{
+    howto:[
+      {t:"Montage par texte", steps:["Importer un fichier audio ou vidéo","Attendre la transcription automatique","Supprimer les mots dans le texte pour couper le média","Exporter en MP4/MP3"]}
+    ],
+    faq:[
+      {q:"Overdub, c'est légal ?", a:"Oui pour cloner sa propre voix ; Descript vérifie l'identité par une phrase de consentement enregistrée."}
+    ]
+  },
+  replit:{
+    howto:[
+      {t:"Créer une app avec l'agent", steps:["Ouvrir replit.com et cliquer sur « + Create Repl »","Choisir « Agent »","Décrire l'app souhaitée en langage naturel","L'agent crée les fichiers, exécute et déploie"]}
+    ],
+    faq:[
+      {q:"Faut-il installer quelque chose ?", a:"Non, tout se passe dans le navigateur, y compris l'exécution."}
+    ]
+  },
+  claudecode:{
+    howto:[
+      {t:"Installation", steps:["Installer via npm install -g @anthropic-ai/claude-code","Ouvrir un terminal dans le dossier du projet","Lancer 'claude'","Décrire la tâche à réaliser"]}
+    ],
+    faq:[
+      {q:"Claude Code est-il inclus dans Claude Pro ?", a:"Oui, tout abonnement Claude Pro/Max inclut Claude Code."},
+      {q:"Peut-on l'utiliser sans terminal ?", a:"Oui, il existe des extensions VS Code et JetBrains, ainsi qu'une app desktop."}
+    ]
+  },
+  v0:{
+    howto:[
+      {t:"Générer un composant", steps:["Se connecter sur v0.dev","Décrire le composant (« un formulaire de connexion épuré »)","Ajuster par messages successifs","Copier le code React/Tailwind ou déployer sur Vercel"]}
+    ],
+    faq:[
+      {q:"Quel framework est utilisé ?", a:"Par défaut React + Tailwind + shadcn/ui, avec possibilité d'exporter vers Next.js."}
+    ]
+  },
+  windsurf:{
+    howto:[
+      {t:"Prise en main", steps:["Télécharger Windsurf sur windsurf.com","Importer les paramètres VS Code","Ouvrir un projet","Utiliser Cascade pour piloter l'agent sur tout le codebase"]}
+    ],
+    faq:[
+      {q:"Windsurf vs Cursor ?", a:"Les deux sont des IDE agentiques concurrents. Windsurf met davantage l'accent sur l'exécution autonome de longues tâches ; Cursor a une communauté plus large."}
+    ]
+  },
+  copyai:{
+    howto:[{t:"Utilisation", steps:["Créer un compte sur copy.ai","Choisir un workflow (GTM, blog, ads)","Renseigner le brief","Générer et exporter"]}],
+    faq:[{q:"Copy.ai vs Jasper ?", a:"Copy.ai est plus orienté workflows commerciaux et automatisation, Jasper plus orienté marketing de contenu."}]
+  },
+  sudowrite:{
+    howto:[{t:"Utilisation", steps:["Créer un compte","Coller son manuscrit","Utiliser Describe, Rewrite, Brainstorm au fil de l'écriture","Organiser dans Canvas"]}],
+    faq:[{q:"Sudowrite écrit-il à ma place ?", a:"Non, il aide à débloquer et enrichir sans imposer un style."}]
+  },
+  quillbot:{
+    howto:[{t:"Paraphraser", steps:["Coller le texte sur quillbot.com","Choisir un mode (Standard, Fluency, Creative…)","Comparer les variantes","Copier le résultat"]}],
+    faq:[{q:"QuillBot est-il gratuit ?", a:"Oui, avec des fonctions limitées ; Premium (~9,95 $/mois) débloque toutes les options."}]
+  },
+  grammarly:{
+    howto:[{t:"Extension navigateur", steps:["Installer l'extension Chrome/Firefox/Edge","Se connecter","Grammarly analyse automatiquement les zones de texte","Cliquer sur les suggestions pour appliquer"]}],
+    faq:[{q:"Grammarly corrige-t-il le français ?", a:"Non, à ce jour Grammarly ne prend en charge que l'anglais. Pour le français, préférer DeepL Write ou Antidote."}]
+  },
+  otter:{
+    howto:[{t:"Réunion Zoom", steps:["Connecter son compte Zoom à Otter","Otter Assistant rejoint automatiquement les réunions","Consulter la transcription et le résumé","Exporter les points d'action"]}],
+    faq:[{q:"Otter fonctionne-t-il en français ?", a:"Le support français progresse mais reste moins précis qu'en anglais."}]
+  },
+  fireflies:{
+    howto:[{t:"Configuration", steps:["Créer un compte","Connecter Google/Outlook Calendar","Fireflies rejoint automatiquement les réunions","Consulter transcription, résumé, et envoyer au CRM"]}],
+    faq:[{q:"Fireflies vs Otter ?", a:"Fireflies met davantage l'accent sur les intégrations CRM (Salesforce, HubSpot)."}]
+  },
+  beautifulai:{
+    howto:[{t:"Créer une présentation", steps:["Se connecter sur beautiful.ai","Choisir un template","Ajouter du contenu, la mise en page se fait automatiquement","Exporter en PPTX ou PDF"]}],
+    faq:[{q:"Peut-on exporter en PowerPoint ?", a:"Oui, l'export .pptx est disponible sur les plans payants."}]
+  },
+  gamma:{
+    howto:[{t:"Générer une présentation", steps:["Se connecter sur gamma.app","Choisir « Generate » puis « Presentation »","Décrire le sujet ou coller un plan","Ajuster les cartes générées, exporter en PDF/PPT"]}],
+    faq:[{q:"Gamma remplace-t-il PowerPoint ?", a:"Pour les présentations web modernes, oui. Pour des slides d'entreprise complexes, PowerPoint reste plus complet."}]
+  },
+  manus:{
+    howto:[{t:"Lancer une tâche", steps:["Se connecter sur manus.im","Décrire la tâche complète en langage naturel","Laisser l'agent planifier","Suivre l'exécution étape par étape et récupérer les livrables"]}],
+    faq:[{q:"Manus est-il vraiment autonome ?", a:"Il travaille en quasi-autonomie mais valide certaines étapes clés auprès de l'utilisateur."}]
+  },
+  devin:{
+    howto:[{t:"Créer une session", steps:["Se connecter sur devin.ai","Décrire la tâche de développement","Devin ouvre un environnement (VM, navigateur, IDE)","Suivre les logs et valider les PR proposées"]}],
+    faq:[{q:"Devin remplace-t-il un développeur ?", a:"Non, il assiste sur les tâches bien définies mais reste supervisé par un humain."}]
+  },
+  autogpt:{
+    howto:[{t:"Installation", steps:["Cloner le repo github.com/Significant-Gravitas/AutoGPT","Configurer sa clé API OpenAI","Définir un objectif dans un fichier config","Lancer l'agent et surveiller la boucle"]}],
+    faq:[{q:"AutoGPT est-il maintenu ?", a:"Oui, le projet continue d'évoluer et propose désormais une plateforme cloud (bêta)."}]
+  },
+  zapieragents:{
+    howto:[{t:"Créer un agent", steps:["Se connecter sur zapier.com/agents","Décrire ce que l'agent doit faire","Connecter les applications concernées","Définir un déclencheur (email, formulaire…)"]}],
+    faq:[{q:"Faut-il un abonnement Zapier ?", a:"Un plan gratuit existe ; les agents fréquents nécessitent un plan payant."}]
+  },
+  n8n:{
+    howto:[{t:"Auto-hébergement", steps:["Installer via Docker : docker run n8nio/n8n","Ouvrir l'interface sur localhost:5678","Créer un workflow avec des nœuds glissés-déposés","Ajouter un nœud AI Agent et connecter un LLM"]}],
+    faq:[{q:"n8n est-il gratuit ?", a:"Oui en auto-hébergement (open source). Le cloud est payant."}]
+  },
+  grok:{
+    howto:[{t:"Utilisation", steps:["Ouvrir grok.com ou l'onglet Grok sur X","Poser une question","Utiliser DeepSearch pour une recherche approfondie","Générer des images via l'onglet dédié"]}],
+    faq:[{q:"Grok est-il libre ?", a:"Une partie du code (Grok 1) a été open-sourcée par xAI ; le service en ligne reste propriétaire."}]
+  },
+  lechat:{
+    howto:[{t:"Utilisation", steps:["Se rendre sur chat.mistral.ai","Créer un compte européen","Choisir le modèle","Utiliser les commandes / pour la recherche web ou la génération d'images"]}],
+    faq:[{q:"Le Chat respecte-t-il le RGPD ?", a:"Oui, Mistral est basé en France et héberge les données dans l'UE."}]
+  },
+  qwen:{
+    howto:[{t:"Utilisation", steps:["Se rendre sur chat.qwen.ai","Créer un compte","Choisir le modèle (Qwen2.5, Qwen-Max, Qwen-VL…)","Utiliser les onglets image/vidéo/code selon le besoin"]}],
+    faq:[{q:"Qwen est-il vraiment open source ?", a:"La plupart des modèles (Qwen2, Qwen2.5) sont sous licence Apache 2.0, mais les plus gros modèles internes restent propriétaires."}]
+  },
+  poe:{
+    howto:[{t:"Utilisation", steps:["Créer un compte sur poe.com","Choisir un bot (GPT-4, Claude, Gemini…)","Poser des questions","Créer son propre bot avec un prompt système"]}],
+    faq:[{q:"Poe est-il gratuit ?", a:"Oui, avec un quota quotidien partagé entre les modèles. Premium (~20 $/mois) débloque plus de points."}]
+  },
+  'meta-ai':{
+    howto:[{t:"Dans WhatsApp", steps:["Chercher « Meta AI » dans les contacts WhatsApp","Envoyer un message comme à un ami","Utiliser @Meta AI dans un groupe pour l'inviter","Demander une image avec « imagine … »"]}],
+    faq:[{q:"Meta AI est-il gratuit ?", a:"Oui, entièrement gratuit dans les apps Meta."}]
+  },
+  stablediffusion:{
+    howto:[{t:"Installer Automatic1111", steps:["Installer Python et Git","Cloner AUTOMATIC1111/stable-diffusion-webui","Télécharger un modèle .safetensors dans /models","Lancer webui-user.bat / .sh puis ouvrir localhost:7860"]}],
+    faq:[{q:"Faut-il un GPU puissant ?", a:"Recommandé (NVIDIA 8 Go VRAM minimum pour SDXL). Une exécution CPU est possible mais très lente."}]
+  },
+  flux:{
+    howto:[{t:"Via API", steps:["Créer un compte sur bfl.ml (ou Replicate)","Générer une clé API","Envoyer un prompt via HTTP","Récupérer l'image générée"]}],
+    faq:[{q:"Flux Schnell est-il vraiment gratuit ?", a:"Oui, les poids sont sous licence Apache 2.0 et peuvent être exécutés localement gratuitement."}]
+  },
+  krea:{
+    howto:[{t:"Génération temps réel", steps:["Ouvrir krea.ai/realtime","Dessiner ou coller une forme","Ajuster le prompt en direct","Enhance pour finaliser en haute qualité"]}],
+    faq:[{q:"Krea propose-t-il de la vidéo ?", a:"Oui, Krea Video permet la génération vidéo (avec crédits payants)."}]
+  },
+  canva:{
+    howto:[{t:"Magic Studio", steps:["Ouvrir un design Canva","Cliquer sur « Magic Studio »","Choisir Magic Media, Magic Edit ou Magic Write","Appliquer et exporter"]}],
+    faq:[{q:"Magic Studio est-il inclus dans Canva Free ?", a:"En partie oui, avec un quota très limité. Canva Pro débloque un usage étendu."}]
+  },
+  recraft:{
+    howto:[{t:"Utilisation", steps:["Se connecter sur recraft.ai","Choisir un style (raster ou vecteur)","Écrire le prompt","Exporter en PNG, SVG ou PDF"]}],
+    faq:[{q:"Peut-on récupérer un vrai SVG éditable ?", a:"Oui, c'est la spécificité de Recraft : le SVG produit est éditable dans Figma ou Illustrator."}]
+  },
+  veo:{
+    howto:[{t:"Via Gemini", steps:["Souscrire à Google AI Pro","Ouvrir Gemini","Demander une vidéo (« a slow drone shot over… »)","Télécharger le clip 1080p"]}],
+    faq:[{q:"Veo est-il disponible en France ?", a:"Oui, via Gemini et Vertex AI, avec quelques restrictions selon la région et le modèle utilisé."}]
+  },
+  luma:{
+    howto:[{t:"Générer un clip", steps:["Se connecter sur lumalabs.ai/dream-machine","Uploader une image de départ (optionnel)","Écrire un prompt","Définir keyframes si besoin, générer"]}],
+    faq:[{q:"Peut-on animer une photo perso ?", a:"Oui, c'est un des usages phares de Dream Machine."}]
+  },
+  hailuo:{
+    howto:[{t:"Utilisation", steps:["Créer un compte sur hailuoai.video","Coller un prompt","Choisir texte-vers-vidéo ou image-vers-vidéo","Attendre la génération (~1 min)"]}],
+    faq:[{q:"Hailuo gère-t-il le français ?", a:"Oui, mais les prompts en anglais donnent de meilleurs résultats."}]
+  },
+  invideo:{
+    howto:[{t:"Créer une vidéo", steps:["Se connecter sur invideo.io/ai","Décrire l'idée de vidéo","Choisir un ratio et une voix","Éditer par instructions (« rends la première scène plus dynamique »)"]}],
+    faq:[{q:"InVideo AI convient aux Reels ?", a:"Oui, l'export vertical 9:16 est natif."}]
+  },
+  playht:{
+    howto:[{t:"TTS", steps:["Créer un compte sur play.ht","Coller le texte","Choisir une voix","Générer et télécharger en WAV/MP3"]}],
+    faq:[{q:"PlayHT convient aux agents vocaux ?", a:"Oui, sa latence <300 ms le rend adapté aux applications téléphoniques temps réel."}]
+  },
+  assemblyai:{
+    howto:[{t:"API", steps:["Créer un compte sur assemblyai.com","Récupérer sa clé API","Envoyer un audio via l'endpoint /transcript","Récupérer JSON avec texte, timestamps et locuteurs"]}],
+    faq:[{q:"Peut-on l'utiliser sans coder ?", a:"L'interface web permet un test manuel mais l'usage principal est via l'API."}]
+  },
+  lovable:{
+    howto:[{t:"Générer une app", steps:["Se connecter sur lovable.dev","Décrire l'app voulue","Itérer par messages","Connecter Supabase pour auth/DB, déployer"]}],
+    faq:[{q:"Lovable exporte le code ?", a:"Oui, le code React/Tailwind est accessible et peut être poussé sur GitHub."}]
+  },
+  bolt:{
+    howto:[{t:"Utilisation", steps:["Ouvrir bolt.new","Décrire le projet","Bolt écrit le code et le lance dans WebContainer","Déployer sur Netlify en un clic"]}],
+    faq:[{q:"Bolt supporte-t-il Next.js ?", a:"Oui, ainsi que Vite, Astro, Svelte, Remix, etc."}]
+  },
+  codeium:{
+    howto:[{t:"Installation", steps:["Installer l'extension Codeium pour son IDE","Se connecter avec un compte gratuit","Attendre les suggestions inline","Utiliser Codeium Chat pour poser des questions"]}],
+    faq:[{q:"Vraiment gratuit à vie ?", a:"Oui pour l'usage individuel. Les entreprises et équipes doivent souscrire un plan payant."}]
+  },
+  tldv:{
+    howto:[{t:"Configuration", steps:["Créer un compte sur tldv.io","Autoriser l'accès au calendrier","tl;dv rejoint automatiquement les réunions","Consulter les transcriptions et résumés"]}],
+    faq:[{q:"Faut-il prévenir les participants ?", a:"Oui, la loi (RGPD) impose d'informer les participants de l'enregistrement."}]
+  },
+  tome:{
+    howto:[{t:"Générer un deck", steps:["Se connecter sur tome.app","Choisir « Generate »","Décrire l'objectif de la présentation","Éditer les slides, ajouter des interactions"]}],
+    faq:[{q:"Tome exporte en PowerPoint ?", a:"Oui, l'export .pptx est disponible sur le plan Pro."}]
+  },
+  genspark:{
+    howto:[{t:"Poser une question", steps:["Se rendre sur genspark.ai","Saisir une question complexe","Genspark génère une Sparkpage synthétique","Naviguer vers les sources ou approfondir"]}],
+    faq:[{q:"Qu'est-ce qu'une Sparkpage ?", a:"Une page auto-générée qui synthétise les informations clés sur un sujet, avec sources et médias intégrés."}]
+  },
+  operator:{
+    howto:[{t:"Utilisation", steps:["Souscrire à ChatGPT Plus ou Pro","Activer Agent Mode dans ChatGPT","Décrire la tâche à réaliser sur le web","Superviser et approuver les étapes sensibles"]}],
+    faq:[{q:"L'agent peut-il payer à ma place ?", a:"Il demande toujours une confirmation avant tout paiement ou action irréversible."}]
+  },
+  notionwriter:{
+    howto:[{t:"Utilisation", steps:["Se rendre sur deepl.com/write","Coller le texte","Choisir la langue et le ton","Copier la version reformulée"]}],
+    faq:[{q:"DeepL Write vs traducteur DeepL ?", a:"Le traducteur passe d'une langue à une autre ; Write reformule dans la même langue."}]
+  },
+  writesonic:{
+    howto:[{t:"Écrire un article", steps:["Se connecter sur writesonic.com","Choisir « AI Article Writer »","Renseigner sujet, mots-clés SEO","Éditer et publier"]}],
+    faq:[{q:"Writesonic optimise-t-il le SEO ?", a:"Oui, avec un brief SEO intégré et une intégration à SurferSEO."}]
+  }
+};
 
 /* =========================================================
    ADSENSE — active chaque nouveau bloc <ins class="adsbygoogle">
@@ -874,6 +1532,16 @@ function initials(name){
   if(parts.length === 1) return parts[0].slice(0,2);
   return (parts[0][0] + parts[1][0]);
 }
+function domainOf(url){
+  try{ return new URL(url).hostname.replace(/^www\./,''); }catch(e){ return ''; }
+}
+function logoImg(t, size){
+  const d = domainOf(t.website);
+  const s = size || 128;
+  const src = `https://www.google.com/s2/favicons?domain=${d}&sz=${s}`;
+  const fallback = `<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:${gradFor(t.seed)};color:#080b14;font-family:'Space Grotesk',sans-serif;font-weight:700;">${initials(t.name)}</span>`;
+  return `${fallback}<img src="${src}" alt="${t.name}" style="position:relative;z-index:1;background:#fff;border-radius:6px;" onerror="this.style.display='none'">`;
+}
 
 function renderSidebar(){
   const nav = document.getElementById('sidebarNav');
@@ -901,7 +1569,7 @@ function scrollToCategory(id){
 
 function toolCardHTML(t){
   return `<a class="card" onclick="openTool('${t.id}');return false;" href="#tool-${t.id}">
-    <div class="card-icon" style="background:${gradFor(t.seed)}">${initials(t.name)}</div>
+    <div class="card-icon">${logoImg(t,64)}</div>
     <div class="card-body">
       <h3>${t.name} ${badgeHTML(t)}</h3>
       <p>${t.tagline}</p>
@@ -972,6 +1640,31 @@ function renderStats(){
 /* =========================================================
    PAGE DE DÉTAIL D'UN OUTIL
    ========================================================= */
+function howtoHTML(t){
+  const info = EXTRA_INFO[t.id];
+  if(!info || !info.howto || !info.howto.length) return '';
+  return `<div class="dblock">
+    <h2>Comment utiliser ${t.name}</h2>
+    ${info.howto.map(m => `
+      <div class="howto-block">
+        <h4>${m.t}</h4>
+        <ol>${m.steps.map(s => `<li>${s}</li>`).join('')}</ol>
+      </div>`).join('')}
+  </div>`;
+}
+function faqHTML(t){
+  const info = EXTRA_INFO[t.id];
+  if(!info || !info.faq || !info.faq.length) return '';
+  return `<div class="dblock">
+    <h2>Questions fréquentes sur ${t.name}</h2>
+    ${info.faq.map(f => `
+      <div class="faq-item">
+        <h4>${f.q}</h4>
+        <p>${f.a}</p>
+      </div>`).join('')}
+  </div>`;
+}
+
 function pricingHTML(t){
   return t.pricing.map(p => `
     <div class="pricing-plan">
@@ -985,7 +1678,7 @@ function relatedHTML(t){
   if(!related.length) return '<p style="font-size:12.5px;color:var(--text-faint);">Aucun outil similaire pour le moment.</p>';
   return related.map(r => `
     <div class="related-item" onclick="openTool('${r.id}')">
-      <div class="ri-icon" style="background:${gradFor(r.seed)}">${initials(r.name)}</div>
+      <div class="ri-icon">${logoImg(r,64)}</div>
       <div class="ri-name">${r.name}</div>
     </div>`).join('');
 }
@@ -999,7 +1692,7 @@ function openTool(id){
     <button class="back-btn" onclick="goHome()">← Retour au répertoire</button>
 
     <div class="detail-head">
-      <div class="detail-thumb" style="background:${gradFor(t.seed)}">${initials(t.name)}</div>
+      <div class="detail-thumb">${logoImg(t,256)}</div>
       <div>
         <div class="detail-tags">
           <span class="tag-pill">${catLabel}</span>
@@ -1025,10 +1718,12 @@ function openTool(id){
           <h2>Fonctionnalités principales</h2>
           <ul>${t.features.map(f => `<li>${f}</li>`).join('')}</ul>
         </div>
+        ${howtoHTML(t)}
         <div class="dblock">
           <h2>Tarification</h2>
           <div>${pricingHTML(t)}</div>
         </div>
+        ${faqHTML(t)}
       </div>
 
       <div class="dside">
@@ -1058,6 +1753,7 @@ function openTool(id){
   `;
 
   document.getElementById('homeView').classList.add('hidden');
+  document.getElementById('resourceView').classList.add('hidden');
   document.getElementById('detailView').classList.remove('hidden');
   window.scrollTo({top:0, behavior:'instant'});
   history.pushState({tool:id}, '', '#tool-' + id);
@@ -1066,9 +1762,95 @@ function openTool(id){
 
 function goHome(){
   document.getElementById('detailView').classList.add('hidden');
+  document.getElementById('resourceView').classList.add('hidden');
   document.getElementById('homeView').classList.remove('hidden');
   window.scrollTo({top:0, behavior:'instant'});
   history.pushState({}, '', '#');
+}
+
+/* =========================================================
+   RESSOURCES : Actualités / Comparatifs / Guides
+   ========================================================= */
+const RESOURCES = {
+  news:{
+    title:"Actualités IA du jour",
+    meta:"Veille · mise à jour quotidienne",
+    html:`
+      <div class="article-card"><span class="date">29 juillet 2026</span><h3>OpenAI dévoile un nouveau modèle vidéo pour Sora</h3><p>OpenAI a annoncé une mise à jour majeure de Sora, portant la durée des clips à 20 secondes en 1080p pour les abonnés Pro, avec un contrôle accru des transitions dans le storyboard.</p></div>
+      <div class="article-card"><span class="date">28 juillet 2026</span><h3>Anthropic étend Claude Code à toutes les offres Pro</h3><p>L'agent de programmation Claude Code, jusque-là réservé à un usage terminal, est désormais accessible via une extension VS Code et une app desktop pour tous les abonnés Claude Pro.</p></div>
+      <div class="article-card"><span class="date">26 juillet 2026</span><h3>Mistral AI ouvre les données de Le Chat au marché européen</h3><p>Le Chat garantit désormais l'hébergement complet des conversations dans l'Union Européenne et publie un rapport de conformité RGPD détaillé.</p></div>
+      <div class="article-card"><span class="date">24 juillet 2026</span><h3>Google déploie Nano Banana dans Gemini gratuit</h3><p>Le célèbre modèle image de Google est étendu à tous les utilisateurs Gemini gratuits, avec un quota de 5 générations quotidiennes.</p></div>
+      <div class="article-card"><span class="date">22 juillet 2026</span><h3>Runway lance Gen-4 Turbo : génération vidéo x4 plus rapide</h3><p>La nouvelle variante Turbo génère un clip de 5 secondes en moins de 20 secondes, sans perte notable de qualité selon les premiers tests.</p></div>
+    `
+  },
+  compare:{
+    title:"Comparatifs & tests",
+    meta:"Bancs d'essai indépendants",
+    html:`
+      <div class="article-card"><h3>ChatGPT vs Claude vs Gemini : quel assistant choisir en 2026 ?</h3>
+        <p>Trois assistants dominent le marché grand public. Ce comparatif synthétise leurs forces respectives selon les usages.</p>
+        <div style="overflow-x:auto"><table class="comp-table">
+          <thead><tr><th>Critère</th><th>ChatGPT</th><th>Claude</th><th>Gemini</th></tr></thead>
+          <tbody>
+            <tr><td>Rédaction longue</td><td>Bon</td><td>Excellent</td><td>Bon</td></tr>
+            <tr><td>Raisonnement complexe</td><td>Excellent (o1)</td><td>Excellent</td><td>Très bon</td></tr>
+            <tr><td>Génération d'image</td><td>DALL·E 3 intégré</td><td>Via Artifacts (SVG)</td><td>Imagen/Nano Banana</td></tr>
+            <tr><td>Contexte max</td><td>128k tokens</td><td>200k tokens</td><td>1M tokens</td></tr>
+            <tr><td>Intégration bureautique</td><td>Limitée</td><td>Google Workspace</td><td>Native (Docs, Gmail…)</td></tr>
+            <tr><td>Prix (offre payante)</td><td>20 $/mois</td><td>20 $/mois</td><td>~20 $/mois</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="article-card"><h3>Midjourney vs Flux vs Nano Banana : bataille des générateurs d'image</h3>
+        <p>Trois modèles au sommet, chacun avec sa spécialité : rendu artistique pour Midjourney, réalisme photo pour Flux, édition itérative pour Nano Banana.</p>
+        <div style="overflow-x:auto"><table class="comp-table">
+          <thead><tr><th>Critère</th><th>Midjourney</th><th>Flux Pro</th><th>Nano Banana</th></tr></thead>
+          <tbody>
+            <tr><td>Rendu artistique</td><td>Excellent</td><td>Très bon</td><td>Bon</td></tr>
+            <tr><td>Réalisme photo</td><td>Bon</td><td>Excellent</td><td>Très bon</td></tr>
+            <tr><td>Rendu du texte</td><td>Moyen</td><td>Excellent</td><td>Très bon</td></tr>
+            <tr><td>Édition d'existant</td><td>Limité (vary)</td><td>API dédiée</td><td>Excellent (chat)</td></tr>
+            <tr><td>Prix minimum</td><td>10 $/mois</td><td>À l'usage</td><td>Inclus Gemini</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="article-card"><h3>Copilot vs Cursor vs Windsurf : quel IDE IA en 2026 ?</h3>
+        <p>Copilot reste la référence de la complétion classique, Cursor domine sur l'édition multi-fichiers, Windsurf cible les tâches longues autonomes.</p>
+      </div>
+      <div class="article-card"><h3>Suno vs Udio : le duel des générateurs de musique</h3>
+        <p>Suno se distingue par la diversité stylistique, Udio par la qualité audio brute. Deux abonnements distincts sont souvent complémentaires.</p>
+      </div>
+    `
+  },
+  guides:{
+    title:"Guides & tutoriels",
+    meta:"Prise en main pas-à-pas",
+    html:`
+      <div class="article-card"><h3>Écrire des prompts efficaces : les 7 règles de base</h3><p>1. Donnez un rôle à l'IA. 2. Précisez le format de sortie. 3. Fournissez des exemples. 4. Cadrez la longueur. 5. Précisez la cible. 6. Itérez plutôt que de tout demander d'un coup. 7. Corrigez ce qui cloche par un message de suivi.</p></div>
+      <div class="article-card"><h3>Créer sa première image avec Midjourney</h3><p>Ouvrez midjourney.com/imagine, tapez un prompt descriptif (sujet + style + éclairage + cadrage), ajustez le ratio via --ar 16:9 et upscalez la meilleure variante. Le style « --style raw » désature l'esthétique par défaut pour un rendu plus neutre.</p></div>
+      <div class="article-card"><h3>Automatiser sa veille avec un agent Zapier</h3><p>Créez un agent Zapier connecté à Gmail et à Notion. Décrivez-lui : « chaque email de newsletter, résume-le en 3 puces et ajoute-le à ma base Notion Veille ». Testez, puis activez le déclencheur.</p></div>
+      <div class="article-card"><h3>Cloner sa voix avec ElevenLabs (sans se faire piéger)</h3><p>Passez sur le plan Creator, ouvrez Voice Lab, uploadez 1 à 5 min de voix propre (sans bruit de fond ni musique). Nommez la voix et testez avec une phrase courte. Rappel : les CGU imposent d'être propriétaire ou explicitement autorisé pour toute voix clonée.</p></div>
+      <div class="article-card"><h3>Choisir entre une API OpenAI, Anthropic et open source</h3><p>OpenAI reste le plus simple à intégrer et documenté. Anthropic est meilleur en écriture longue et gestion de longs contextes. Les modèles open source (Llama, Qwen, DeepSeek) offrent le meilleur contrôle et confidentialité, mais nécessitent une infrastructure.</p></div>
+      <div class="article-card"><h3>Sécuriser ses données quand on utilise une IA au travail</h3><p>Désactivez l'entraînement sur vos données dans les paramètres, utilisez les versions Team/Business qui garantissent la non-utilisation, anonymisez les données sensibles avant collage, et vérifiez la juridiction d'hébergement (UE/US/CN).</p></div>
+    `
+  }
+};
+
+function openResource(key){
+  const r = RESOURCES[key];
+  if(!r) return;
+  const wrap = document.getElementById('resourceView');
+  wrap.innerHTML = `
+    <div class="article">
+      <button class="back-btn" onclick="goHome()">← Retour au répertoire</button>
+      <h1>${r.title}</h1>
+      <div class="meta">${r.meta}</div>
+      ${r.html}
+    </div>`;
+  document.getElementById('homeView').classList.add('hidden');
+  document.getElementById('detailView').classList.add('hidden');
+  wrap.classList.remove('hidden');
+  window.scrollTo({top:0, behavior:'instant'});
 }
 
 window.addEventListener('popstate', () => {
@@ -1100,7 +1882,7 @@ searchInput.addEventListener('input', () => {
   } else {
     searchResults.innerHTML = matches.map(t => `
       <div class="sr-item" onclick="openTool('${t.id}');searchResults.classList.remove('show');searchInput.value='';">
-        <div class="sr-icon" style="background:${gradFor(t.seed)}">${initials(t.name)}</div>
+        <div class="sr-icon">${logoImg(t,64)}</div>
         <div><div class="sr-name">${t.name}</div><div class="sr-cat">${CATEGORIES.find(c=>c.id===t.category).label}</div></div>
       </div>`).join('');
   }
