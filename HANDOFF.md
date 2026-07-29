@@ -1,6 +1,17 @@
-# NEXORA — Contexte projet (à donner à n'importe quelle IA)
+# NEXORA — Handoff (à donner à n'importe quelle IA)
 
 Ce document sert de brief complet pour reprendre le projet depuis zéro avec n'importe quelle IA (Claude, ChatGPT, Gemini…). Il contient : le pitch, les règles, les emplacements à modifier, l'historique et le backlog.
+
+---
+
+## 0. Règles impératives (à respecter par toute IA sur ce projet)
+
+- **Toujours poser des questions via `AskUserQuestion`** — peu importe quand, quitte à en poser 20. Même en cas de doute minuscule, même si tu penses avoir compris. Ça évite les allers-retours de correction.
+- **Réduire au maximum la consommation de tokens** de l'utilisateur.
+- **Être concis, clair, compréhensible et efficace** dans les propos.
+- **Une modification du site impacte tous les comptes**, sauf preuve du contraire.
+- **Toujours pousser sur GitHub** après une modification, sauf preuve du contraire.
+- **Toute incohérence détectée doit être remontée en `AskUserQuestion`** avant d'agir.
 
 ---
 
