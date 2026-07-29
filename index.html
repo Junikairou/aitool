@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXORA — Répertoire d'outils IA</title>
+<title>AI need tools — Répertoire d'outils IA</title>
 
 <!-- ===================================================================
      GOOGLE ADSENSE — À CONFIGURER
@@ -118,13 +118,7 @@ body{
 @media (max-width:960px){ .sidebar{ position:relative; height:auto; display:none; } .sidebar.open{display:block;} }
 
 .brand{ display:flex; align-items:center; gap:10px; padding:4px 8px 26px; cursor:pointer;}
-.brand-mark{
-  width:34px;height:34px;border-radius:10px;
-  background:conic-gradient(from 140deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-1));
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Space Grotesk',sans-serif; font-weight:700; color:#080b14; font-size:15px;
-  box-shadow:0 0 24px var(--glow-1);
-}
+.brand-mark{ width:34px;height:34px; border-radius:10px; flex-shrink:0; box-shadow:0 0 24px var(--glow-1); display:block; }
 .brand-name{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; letter-spacing:.2px;}
 .brand-name span{ background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
 
@@ -190,7 +184,7 @@ body{
 }
 .search-results .sr-item:last-child{ border-bottom:none; }
 .search-results .sr-item:hover{ background:var(--panel-2); }
-.search-results .sr-icon{ width:30px;height:30px;border-radius:8px; background:#fff; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; overflow:hidden; padding:4px;}
+.search-results .sr-icon{ width:30px;height:30px;border-radius:8px; background:#fff; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; overflow:hidden; padding:2px;}
 .search-results .sr-icon img{ width:100%; height:100%; object-fit:contain;}
 .search-results .sr-name{ font-size:13px; font-weight:600; }
 .search-results .sr-cat{ font-size:11px; color:var(--text-faint); }
@@ -284,7 +278,7 @@ body{
   width:44px;height:44px;border-radius:11px; flex-shrink:0;
   display:flex;align-items:center;justify-content:center; font-size:16px; font-weight:700;
   color:#080b14; font-family:'Space Grotesk',sans-serif; position:relative;
-  background:#fff; overflow:hidden; padding:6px;
+  background:#fff; overflow:hidden; padding:2px;
 }
 .card-icon img{ width:100%; height:100%; object-fit:contain; display:block; }
 .card-icon.fallback{ padding:0; }
@@ -419,7 +413,7 @@ body{
 .related-tools{ display:flex; flex-direction:column; gap:10px; }
 .related-item{ display:flex; align-items:center; gap:10px; cursor:pointer; padding:6px; border-radius:10px; }
 .related-item:hover{ background:var(--panel-2); }
-.related-item .ri-icon{ width:32px;height:32px;border-radius:8px; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; background:#fff; overflow:hidden; padding:4px;}
+.related-item .ri-icon{ width:32px;height:32px;border-radius:8px; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; background:#fff; overflow:hidden; padding:2px;}
 .related-item .ri-icon img{ width:100%; height:100%; object-fit:contain;}
 .related-item .ri-name{ font-size:13px; font-weight:600; }
 
@@ -469,8 +463,8 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
   <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar" id="sidebar">
     <div class="brand" onclick="goHome()">
-      <div class="brand-mark">N</div>
-      <div class="brand-name">NEX<span>ORA</span></div>
+      <svg class="brand-mark" viewBox="0 0 24 24"><defs><linearGradient id="heartGrad1" x1="0" y1="0" x2="24" y2="24"><stop offset="0%" stop-color="var(--accent-1)"/><stop offset="55%" stop-color="var(--accent-2)"/><stop offset="100%" stop-color="var(--accent-3)"/></linearGradient></defs><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#heartGrad1)"/><text x="12" y="12.4" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="7.6" fill="#080b14">AI</text></svg>
+      <div class="brand-name">AI <span>need tools</span></div>
     </div>
 
     <div class="nav-group-label">Explorer</div>
@@ -551,6 +545,9 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
     <!-- ============ RESSOURCE VIEW ============ -->
     <div id="resourceView" class="hidden"></div>
 
+    <!-- ============ CATEGORY VIEW ============ -->
+    <div id="categoryView" class="detail hidden"></div>
+
   </main>
 </div>
 
@@ -559,8 +556,8 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
   <div class="footer-grid">
     <div>
       <div class="brand" style="padding:0 0 10px;" onclick="goHome()">
-        <div class="brand-mark">N</div>
-        <div class="brand-name">NEX<span>ORA</span></div>
+        <svg class="brand-mark" viewBox="0 0 24 24"><defs><linearGradient id="heartGrad2" x1="0" y1="0" x2="24" y2="24"><stop offset="0%" stop-color="var(--accent-1)"/><stop offset="55%" stop-color="var(--accent-2)"/><stop offset="100%" stop-color="var(--accent-3)"/></linearGradient></defs><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#heartGrad2)"/><text x="12" y="12.4" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="7.6" fill="#080b14">AI</text></svg>
+        <div class="brand-name">AI <span>need tools</span></div>
       </div>
       <p style="font-size:13px;color:var(--text-faint);max-width:260px;line-height:1.6;">Le répertoire francophone des outils d'intelligence artificielle, mis à jour chaque jour.</p>
     </div>
@@ -581,7 +578,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
       <a>Nous contacter</a>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 NEXORA — Répertoire d'outils IA. Tous droits réservés. Les tarifs affichés sont indicatifs, vérifiez-les sur le site officiel de chaque outil.</div>
+  <div class="footer-bottom">© 2026 AI need tools — Répertoire d'outils IA. Tous droits réservés. Les tarifs affichés sont indicatifs, vérifiez-les sur le site officiel de chaque outil.</div>
 </footer>
 
 <script>
@@ -1030,6 +1027,199 @@ const TOOLS = [
     desc:"Writesonic combine rédaction SEO, article de blog long format et un chat IA (Chatsonic) avec recherche web pour créer du contenu optimisé pour Google.",
     features:["AI Article Writer avec structure SEO","Chatsonic avec accès web temps réel","Extension navigateur pour rédiger partout","Analyse et brief SEO intégré"],
     pricing:[{p:'Free',price:'0 $',d:'Essai limité'},{p:'Chatsonic',price:'~15 $/mois',d:'Accès chat premium'},{p:'Individual',price:'~20 $/mois',d:'Article generator complet'}] },
+
+  // ============ AJOUTS 2 ============
+  { id:'rytr', name:'Rytr', category:'redaction', badge:'', tagline:"Générateur de texte économique pour petits contenus marketing.",
+    website:'https://rytr.me', tags:['Économique','Marketing','Templates'],
+    desc:"Rytr propose une génération de texte marketing à petit prix, avec de nombreux templates courts (annonces, bios, emails) adaptés aux indépendants et petites structures.",
+    features:["Plus de 40 cas d'usage prêts à l'emploi","Ton personnalisable par génération","Vérificateur de plagiat intégré","Extension Chrome pour rédiger partout"],
+    pricing:[{p:'Free',price:'0 $',d:'10 000 caractères/mois'},{p:'Saver',price:'~9 $/mois',d:'100 000 caractères/mois'},{p:'Unlimited',price:'~29 $/mois',d:'Génération illimitée'}] },
+
+  { id:'wordtune', name:'Wordtune', category:'redaction', badge:'', tagline:"Reformulation contextuelle phrase par phrase.",
+    website:'https://www.wordtune.com', tags:['Reformulation','Clarté','Extension'],
+    desc:"Wordtune aide à reformuler une phrase à la fois avec plusieurs suggestions de ton (formel, casual, plus court, plus long), directement dans l'éditeur de texte utilisé.",
+    features:["Suggestions de reformulation par phrase","Réglage du ton et de la longueur","Fonction Spices pour enrichir un texte (exemples, statistiques)","Extension navigateur et Gmail"],
+    pricing:[{p:'Free',price:'0 $',d:'10 réécritures/jour'},{p:'Plus',price:'~10 $/mois',d:'Réécritures illimitées'}] },
+
+  { id:'prowritingaid', name:'ProWritingAid', category:'redaction', badge:'', tagline:"Analyse stylistique avancée pour auteurs et rédacteurs exigeants.",
+    website:'https://prowritingaid.com', tags:['Style','Auteurs','Rapports'],
+    desc:"ProWritingAid propose une vingtaine de rapports d'analyse stylistique (répétitions, rythme, clichés, lisibilité) très appréciés des auteurs de livres et rédacteurs professionnels.",
+    features:["Plus de 20 rapports d'analyse stylistique détaillés","Détection des répétitions et clichés","Intégration Scrivener, Word, Google Docs","Suggestions de réécriture contextuelles"],
+    pricing:[{p:'Free',price:'0 $',d:'500 mots par vérification'},{p:'Premium',price:'~10 $/mois',d:'Facturation annuelle, accès complet'}] },
+
+  { id:'anyword', name:'Anyword', category:'redaction', badge:'', tagline:"Rédaction publicitaire avec score de performance prédictif.",
+    website:'https://www.anyword.com', tags:['Publicité','Score prédictif','Performance'],
+    desc:"Anyword génère des textes publicitaires et attribue à chaque variante un score de performance prédictif basé sur des données marketing, pour choisir la meilleure avant diffusion.",
+    features:["Score de performance prédictif par variante","Génération multi-plateforme (Meta, Google, LinkedIn)","Personas cibles configurables","Tests A/B facilités par variantes multiples"],
+    pricing:[{p:'Starter',price:'~39 $/mois',d:'1 utilisateur, contenu illimité'},{p:'Data-Driven',price:'~199 $/mois',d:'Score de performance avancé'}] },
+
+  { id:'freepik-ai', name:'Freepik AI', category:'image', badge:'', tagline:"Génération d'image intégrée à la banque d'images Freepik.",
+    website:'https://www.freepik.com/ai', tags:['Banque d\'images','Templates','Mockups'],
+    desc:"Freepik AI combine génération d'image et vaste bibliothèque de ressources graphiques existantes, pratique pour compléter un visuel généré avec des assets tout prêts.",
+    features:["Génération d'image intégrée au moteur de recherche Freepik","Retouche et upscale d'images existantes","Génération de mockups et icônes","Accès à la bibliothèque Freepik Premium"],
+    pricing:[{p:'Free',price:'0 $',d:'Générations limitées'},{p:'Premium',price:'~10 $/mois',d:'Génération étendue + bibliothèque complète'}] },
+
+  { id:'playgroundai', name:'Playground AI', category:'image', badge:'', tagline:"Éditeur d'image génératif avec canvas et filtres avancés.",
+    website:'https://playground.com', tags:['Canvas','Filtres','Communauté'],
+    desc:"Playground AI propose un espace créatif combinant génération d'image, filtres, et outils d'édition en canvas, avec une forte communauté de partage de styles.",
+    features:["Canvas d'édition avec calques","Filtres et styles prédéfinis nombreux","Génération à partir de plusieurs modèles (SD, Flux…)","Communauté de partage de prompts"],
+    pricing:[{p:'Free',price:'0 $',d:'Générations quotidiennes limitées'},{p:'Pro',price:'~15 $/mois',d:'Génération illimitée haute résolution'}] },
+
+  { id:'magnific', name:'Magnific AI', category:'image', badge:'new', tagline:"Upscale et amélioration de détails d'image par IA, très réaliste.",
+    website:'https://magnific.ai', tags:['Upscale','Détails','Réalisme'],
+    desc:"Magnific AI est spécialisé dans l'upscale créatif : il ajoute des détails ultra-réalistes à une image existante plutôt que de simplement agrandir les pixels.",
+    features:["Upscale avec ajout de détails générés","Contrôle de la créativité vs fidélité à l'original","Traitement par lot pour plusieurs images","Rendu jusqu'à des résolutions très élevées"],
+    pricing:[{p:'Pro',price:'~39 $/mois',d:'Crédits mensuels de base'},{p:'Premium',price:'~99 $/mois',d:'Crédits étendus et vitesse prioritaire'}] },
+
+  { id:'clipdrop', name:'Clipdrop', category:'image', badge:'', tagline:"Boîte à outils d'édition d'image rapide par Stability AI.",
+    website:'https://clipdrop.co', tags:['Détourage','Suppression d\'arrière-plan','Stability AI'],
+    desc:"Clipdrop regroupe plusieurs outils d'édition d'image ponctuels et rapides : suppression d'arrière-plan, nettoyage d'objet, relighting, upscale, le tout accessible via app ou API.",
+    features:["Suppression d'arrière-plan en un clic","Nettoyage d'objets indésirables (Cleanup)","Relighting : modification de l'éclairage d'une photo","API pour intégrer les outils dans une app"],
+    pricing:[{p:'Free',price:'0 $',d:'Outils de base limités'},{p:'Pro',price:'~9 $/mois',d:'Usage étendu et haute résolution'}] },
+
+  { id:'pictory', name:'Pictory', category:'video', badge:'', tagline:"Transformation d'articles de blog ou scripts en vidéos courtes.",
+    website:'https://pictory.ai', tags:['Blog vers vidéo','Sous-titres','Marketing'],
+    desc:"Pictory convertit un article de blog, un script ou un enregistrement long en vidéo courte engageante, avec sous-titrage automatique et sélection de plans B-roll.",
+    features:["Conversion automatique d'article en script vidéo","Sous-titrage automatique stylisé","Bibliothèque de vidéos et images stock intégrée","Découpe automatique de contenus longs en clips courts"],
+    pricing:[{p:'Starter',price:'~19 $/mois',d:'30 min de vidéo/mois'},{p:'Professional',price:'~39 $/mois',d:'60 min de vidéo/mois'}] },
+
+  { id:'opusclip', name:'Opus Clip', category:'video', badge:'new', tagline:"Découpe automatiquement une vidéo longue en clips viraux courts.",
+    website:'https://www.opus.pro', tags:['Repurposing','Shorts','Score viral'],
+    desc:"Opus Clip analyse une vidéo longue (podcast, webinar, stream) et en extrait automatiquement les meilleurs extraits courts, notés par un score de potentiel viral.",
+    features:["Détection automatique des meilleurs moments","Score de potentiel viral par clip généré","Recadrage automatique en format vertical","Sous-titres animés stylisés inclus"],
+    pricing:[{p:'Free',price:'0 $',d:'60 min importées/mois'},{p:'Starter',price:'~15 $/mois',d:'150 min importées/mois'},{p:'Pro',price:'~29 $/mois',d:'600 min importées/mois'}] },
+
+  { id:'veed', name:'Veed.io', category:'video', badge:'', tagline:"Éditeur vidéo en ligne tout-en-un avec fonctions IA intégrées.",
+    website:'https://www.veed.io', tags:['Montage','Sous-titres','En ligne'],
+    desc:"Veed.io est un éditeur vidéo complet dans le navigateur, enrichi de fonctions IA : sous-titrage automatique, suppression de bruit, traduction et avatars IA.",
+    features:["Sous-titrage automatique multilingue","Suppression de bruit de fond en un clic","Traduction et doublage automatique de vidéo","Avatars IA pour vidéos sans caméra"],
+    pricing:[{p:'Free',price:'0 $',d:'10 min/mois avec filigrane'},{p:'Lite',price:'~18 $/mois',d:'Export sans filigrane'},{p:'Pro',price:'~30 $/mois',d:'Fonctions avancées et export 4K'}] },
+
+  { id:'filmora', name:'Wondershare Filmora', category:'video', badge:'', tagline:"Logiciel de montage vidéo grand public avec suite d'outils IA.",
+    website:'https://filmora.wondershare.com', tags:['Montage','Grand public','Templates'],
+    desc:"Filmora est un logiciel de montage vidéo accessible aux débutants, désormais enrichi d'outils IA : suppression d'arrière-plan, texte-vers-parole, découpe de silences.",
+    features:["Suppression d'arrière-plan sans fond vert","Texte-vers-parole et transcription automatique","Bibliothèque de templates et effets nombreuse","Découpe automatique des silences"],
+    pricing:[{p:'Free',price:'0 $',d:'Export avec filigrane'},{p:'Annuel',price:'~50 $/an',d:'Licence complète sans filigrane'}] },
+
+  { id:'speechify', name:'Speechify', category:'audio', badge:'', tagline:"Lecture de texte à voix haute, très populaire pour la productivité.",
+    website:'https://speechify.com', tags:['Text-to-speech','Productivité','Accessibilité'],
+    desc:"Speechify convertit n'importe quel texte, PDF ou page web en audio à écouter, avec des voix naturelles et un contrôle de vitesse, pensé pour lire plus vite ou en déplacement.",
+    features:["Lecture de PDF, pages web et documents","Voix IA réalistes à vitesse ajustable (jusqu'à 4,5x)","Extension navigateur et apps mobiles","Fonction Voix Over pour créer du contenu audio"],
+    pricing:[{p:'Free',price:'0 $',d:'Voix standards limitées'},{p:'Premium',price:'~139 $/an',d:'Voix premium et vitesse illimitée'}] },
+
+  { id:'lovo', name:'LOVO AI', category:'audio', badge:'', tagline:"Voix off IA et doublage pour vidéos et publicités.",
+    website:'https://lovo.ai', tags:['Voix off','Doublage','Émotions'],
+    desc:"LOVO AI propose des voix off avec un contrôle fin des émotions et de l'intonation, ainsi qu'un module de clonage vocal, orienté production publicitaire et e-learning.",
+    features:["Plus de 500 voix dans 100+ langues","Contrôle des émotions par phrase (joyeux, triste, en colère…)","Clonage de voix personnalisé","Éditeur vidéo intégré avec sous-titres"],
+    pricing:[{p:'Free',price:'0 $',d:'Essai limité'},{p:'Pro',price:'~24 $/mois',d:'Usage commercial et voix étendues'}] },
+
+  { id:'voicemod', name:'Voicemod', category:'audio', badge:'', tagline:"Modification de voix en temps réel pour streaming et jeux vidéo.",
+    website:'https://www.voicemod.net', tags:['Temps réel','Streaming','Gaming'],
+    desc:"Voicemod change la voix en temps réel pendant un stream, un appel ou une partie en ligne, avec des effets vocaux et une bibliothèque de voix IA.",
+    features:["Changement de voix en temps réel pendant un appel","Bibliothèque d'effets sonores pour streamers","Compatible Discord, OBS, jeux en ligne","Voix IA personnalisées par génération"],
+    pricing:[{p:'Free',price:'0 $',d:'Voix et effets limités'},{p:'Pro',price:'~4,17 $/mois',d:'Bibliothèque complète, facturation annuelle'}] },
+
+  { id:'resemble', name:'Resemble AI', category:'audio', badge:'', tagline:"Clonage de voix et synthèse vocale orientés développeurs.",
+    website:'https://www.resemble.ai', tags:['API','Clonage','Développeurs'],
+    desc:"Resemble AI cible les développeurs avec une API de synthèse vocale et de clonage, incluant la détection de deepfake audio pour un usage responsable.",
+    features:["API de clonage de voix pour intégration produit","Génération vocale en temps réel à faible latence","Détection de deepfake audio (Resemble Detect)","Localisation multilingue automatique"],
+    pricing:[{p:'Free',price:'0 $',d:"Crédits d'essai"},{p:'Pay-as-you-go',price:"À l'usage",d:'Facturation à la minute générée'}] },
+
+  { id:'tabnine', name:'Tabnine', category:'code', badge:'', tagline:"Complétion de code IA axée confidentialité et déploiement privé.",
+    website:'https://www.tabnine.com', tags:['Confidentialité','On-premise','Complétion'],
+    desc:"Tabnine met l'accent sur la confidentialité du code : modèles pouvant tourner localement ou en VPC privé, sans jamais entraîner sur le code des clients entreprise.",
+    features:["Déploiement possible 100% local ou VPC privé","Aucune donnée client utilisée pour l'entraînement (plans payants)","Support de plus de 30 langages et IDE","Complétion adaptée au style de code de l'équipe"],
+    pricing:[{p:'Free',price:'0 $',d:'Complétion de base'},{p:'Dev',price:'~9 $/mois',d:'Chat et complétion avancée'},{p:'Enterprise',price:'Sur devis',d:'Déploiement privé et conformité'}] },
+
+  { id:'amazonq', name:'Amazon Q Developer', category:'code', badge:'', tagline:"Assistant de code IA d'AWS, intégré à l'écosystème cloud Amazon.",
+    website:'https://aws.amazon.com/q/developer/', tags:['AWS','Cloud','Sécurité'],
+    desc:"Amazon Q Developer (ex-CodeWhisperer) est l'assistant de code d'AWS, particulièrement pertinent pour les projets utilisant les services cloud Amazon, avec scan de vulnérabilités intégré.",
+    features:["Complétion de code optimisée pour les API AWS","Scan de vulnérabilités et correctifs suggérés","Transformation de code automatisée (migrations)","Chat intégré à la console AWS"],
+    pricing:[{p:'Free',price:'0 $',d:'Usage individuel limité'},{p:'Pro',price:'~19 $/utilisateur/mois',d:'Fonctions entreprise et administration'}] },
+
+  { id:'cody', name:'Sourcegraph Cody', category:'code', badge:'', tagline:"Assistant IA avec compréhension approfondie de grands codebases.",
+    website:'https://sourcegraph.com/cody', tags:['Recherche de code','Grands projets','Contexte'],
+    desc:"Cody s'appuie sur le moteur de recherche de code Sourcegraph pour offrir une compréhension précise de très grands monorepos, utile pour les grandes équipes d'ingénierie.",
+    features:["Recherche sémantique dans des millions de lignes de code","Chat avec contexte tiré de tout le dépôt indexé","Autocomplétion contextuelle multi-fichiers","Compatible VS Code, JetBrains, Neovim"],
+    pricing:[{p:'Free',price:'0 $',d:'Usage individuel'},{p:'Pro',price:'~9 $/mois',d:'Requêtes étendues'},{p:'Enterprise',price:'Sur devis',d:'Indexation de grands monorepos privés'}] },
+
+  { id:'aider', name:'Aider', category:'code', badge:'', tagline:"Agent de code open source en ligne de commande, branché sur son propre LLM.",
+    website:'https://aider.chat', tags:['Open source','Terminal','Git'],
+    desc:"Aider est un agent de programmation open source en ligne de commande qui édite directement les fichiers d'un dépôt et crée des commits Git, compatible avec de nombreux LLM au choix.",
+    features:["Édition directe des fichiers avec commits Git automatiques","Compatible avec Claude, GPT, modèles locaux au choix","Fonctionne dans n'importe quel terminal","Gratuit et entièrement open source"],
+    pricing:[{p:'Open source',price:'0 $',d:"Coût de l'API du modèle choisi à part"}] },
+
+  { id:'motion', name:'Motion', category:'productivite', badge:'', tagline:"Planification de calendrier et de tâches automatisée par IA.",
+    website:'https://www.usemotion.com', tags:['Calendrier','Tâches','Planification'],
+    desc:"Motion réorganise automatiquement le calendrier et la liste de tâches selon les priorités et les deadlines, en replanifiant en temps réel si un imprévu survient.",
+    features:["Replanification automatique du calendrier en cas d'imprévu","Priorisation intelligente des tâches par deadline","Fusion tâches + réunions dans un seul planning","Suivi de projet avec vues Kanban"],
+    pricing:[{p:'Individual',price:'~19 $/mois',d:'Facturation annuelle, 1 utilisateur'},{p:'Team',price:'~12 $/utilisateur/mois',d:'Facturation annuelle, gestion d\'équipe'}] },
+
+  { id:'reclaim', name:'Reclaim.ai', category:'productivite', badge:'', tagline:"Protège automatiquement des plages de temps pour le travail profond.",
+    website:'https://reclaim.ai', tags:['Calendrier','Habitudes','Deep work'],
+    desc:"Reclaim.ai bloque automatiquement des créneaux dans l'agenda pour les tâches importantes et les habitudes récurrentes, en les déplaçant intelligemment si une réunion est ajoutée.",
+    features:["Blocage automatique de plages de travail profond","Synchronisation bidirectionnelle avec Google Calendar","Habitudes récurrentes réajustées automatiquement","Analyse du temps passé par catégorie"],
+    pricing:[{p:'Free',price:'0 $',d:'Fonctions de base'},{p:'Starter',price:'~8 $/mois',d:'Automatisations étendues'},{p:'Business',price:'~12 $/utilisateur/mois',d:'Analytics et administration d\'équipe'}] },
+
+  { id:'clockwise', name:'Clockwise', category:'productivite', badge:'', tagline:"Optimisation d'équipe du calendrier pour préserver le temps de concentration.",
+    website:'https://www.getclockwise.com', tags:['Calendrier','Équipe','Focus time'],
+    desc:"Clockwise optimise les calendriers à l'échelle d'une équipe entière pour regrouper les réunions et préserver des plages de concentration ininterrompues pour chacun.",
+    features:["Optimisation collective du calendrier d'équipe","Création automatique de plages de focus time","Résolution intelligente des conflits de réunion","Synchronisation Slack pour le statut de disponibilité"],
+    pricing:[{p:'Free',price:'0 $',d:'Fonctions individuelles de base'},{p:'Teams',price:'~6,75 $/utilisateur/mois',d:'Optimisation collective complète'}] },
+
+  { id:'superhuman', name:'Superhuman', category:'productivite', badge:'', tagline:"Client email ultra-rapide avec fonctions IA de rédaction et de tri.",
+    website:'https://superhuman.com', tags:['Email','Vitesse','IA'],
+    desc:"Superhuman est un client email premium conçu pour la vitesse (raccourcis clavier partout), enrichi de fonctions IA pour rédiger, résumer et trier automatiquement les emails.",
+    features:["Rédaction et résumé d'emails par IA","Tri automatique de la boîte de réception par priorité","Raccourcis clavier pour naviguer sans souris","Rappels de suivi automatiques si pas de réponse"],
+    pricing:[{p:'Starter',price:'~25 $/mois',d:'Facturation annuelle, 1 utilisateur'},{p:'Business',price:'~33 $/utilisateur/mois',d:'Fonctions d\'équipe et administration'}] },
+
+  { id:'crewai', name:'CrewAI', category:'agents', badge:'', tagline:"Framework open source pour orchestrer plusieurs agents IA en équipe.",
+    website:'https://www.crewai.com', tags:['Multi-agents','Open source','Framework'],
+    desc:"CrewAI permet de définir plusieurs agents IA avec des rôles distincts (chercheur, rédacteur, réviseur) qui collaborent automatiquement pour accomplir une tâche complexe.",
+    features:["Définition de rôles et objectifs par agent","Orchestration automatique de la collaboration entre agents","Intégration avec de nombreux outils et LLM","Gratuit et open source, version cloud disponible"],
+    pricing:[{p:'Open source',price:'0 $',d:"Auto-hébergement, coûts d'API à part"},{p:'CrewAI Cloud',price:'Sur devis',d:'Version hébergée pour entreprises'}] },
+
+  { id:'multion', name:'MultiOn', category:'agents', badge:'', tagline:"Agent capable de naviguer et d'agir sur le web à votre place.",
+    website:'https://www.multion.ai', tags:['Navigation web','API','Autonomie'],
+    desc:"MultiOn fournit une API permettant à un agent IA de naviguer sur le web, remplir des formulaires et effectuer des actions réelles sur des sites, intégrable dans une app tierce.",
+    features:["API de navigation web autonome pour développeurs","Remplissage de formulaires et actions multi-étapes","Extension navigateur pour usage direct","Suivi et logs des actions effectuées"],
+    pricing:[{p:'Free',price:'0 $',d:'Usage limité'},{p:'Pro',price:'Sur devis',d:'Volumes API étendus'}] },
+
+  { id:'relevanceai', name:'Relevance AI', category:'agents', badge:'', tagline:"Plateforme no-code pour construire des équipes d'agents IA.",
+    website:'https://relevanceai.com', tags:['No-code','Multi-agents','Entreprise'],
+    desc:"Relevance AI permet de construire, sans code, des agents et des équipes d'agents IA connectés aux outils de l'entreprise, pour automatiser des processus métier complexes.",
+    features:["Constructeur d'agents no-code par glisser-déposer","Équipes d'agents collaborant sur un même objectif","Bibliothèque de connecteurs vers outils métier","Supervision humaine des étapes sensibles"],
+    pricing:[{p:'Free',price:'0 $',d:"Crédits d'essai"},{p:'Pro',price:'~19 $/mois',d:'Agents et automatisations étendus'}] },
+
+  { id:'browseruse', name:'Browser Use', category:'agents', badge:'new', tagline:"Framework open source pour connecter un agent IA à un navigateur.",
+    website:'https://browser-use.com', tags:['Open source','Navigateur','Framework'],
+    desc:"Browser Use est une librairie open source qui donne à un agent LLM le contrôle d'un navigateur web réel, largement utilisée comme brique de base par d'autres agents IA.",
+    features:["Contrôle programmable d'un navigateur par un LLM","Compatible avec la plupart des modèles (GPT, Claude, local)","Utilisé comme brique technique par de nombreux agents","Gratuit et open source"],
+    pricing:[{p:'Open source',price:'0 $',d:"Bibliothèque gratuite, coûts d'API du LLM à part"},{p:'Cloud',price:'Sur devis',d:'Exécution hébergée à grande échelle'}] },
+
+  { id:'pi', name:'Pi (Inflection AI)', category:'chat', badge:'', tagline:"Assistant conversationnel personnel, orienté écoute et soutien émotionnel.",
+    website:'https://pi.ai', tags:['Inflection AI','Bien-être','Conversation'],
+    desc:"Pi se positionne comme un compagnon conversationnel personnel plutôt qu'un outil de productivité, avec un ton chaleureux pensé pour des échanges quotidiens et un soutien émotionnel léger.",
+    features:["Ton conversationnel chaleureux et personnalisé","Mémoire des échanges précédents avec l'utilisateur","Mode vocal naturel disponible","Application mobile dédiée"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Accès complet, entièrement gratuit'}] },
+
+  { id:'characterai', name:'Character.AI', category:'chat', badge:'', tagline:"Création et conversation avec des personnages IA personnalisés.",
+    website:'https://character.ai', tags:['Personnages','Divertissement','Communauté'],
+    desc:"Character.AI permet de discuter avec des millions de personnages IA créés par la communauté, ou de créer son propre personnage avec une personnalité et un contexte définis.",
+    features:["Création de personnages IA personnalisés","Bibliothèque communautaire de millions de personnages","Conversations vocales avec les personnages","Application mobile très utilisée par un public jeune"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Accès avec files d\'attente aux heures de pointe'},{p:'c.ai+',price:'~9,99 $/mois',d:'Réponses prioritaires et plus rapides'}] },
+
+  { id:'huggingchat', name:'HuggingChat', category:'chat', badge:'', tagline:"Interface de chat gratuite pour tester des modèles open source.",
+    website:'https://huggingface.co/chat', tags:['Hugging Face','Open source','Gratuit'],
+    desc:"HuggingChat, développé par Hugging Face, permet de discuter gratuitement avec les meilleurs modèles open source du moment (Llama, Qwen, Mistral…) sans création de compte payant.",
+    features:["Accès gratuit à plusieurs modèles open source","Changement de modèle en un clic","Outils intégrés (recherche web, génération d'image)","Aucune donnée utilisée à des fins commerciales cachées"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Entièrement gratuit'}] },
+
+  { id:'you', name:'You.com', category:'chat', badge:'', tagline:"Moteur de recherche IA personnalisable avec plusieurs modes.",
+    website:'https://you.com', tags:['Recherche','Personnalisable','Multi-modèles'],
+    desc:"You.com combine recherche web et chat IA, avec des modes spécialisés (recherche, code, image) et la possibilité de choisir le modèle sous-jacent parmi plusieurs options.",
+    features:["Recherche web enrichie de réponses IA sourcées","Choix du modèle IA utilisé (GPT, Claude, etc.)","Modes spécialisés : code, image, recherche académique","Espace de travail personnalisable"],
+    pricing:[{p:'Free',price:'0 $',d:'Recherches limitées par jour'},{p:'Pro',price:'~15 $/mois',d:'Recherches et modèles illimités'}] },
 ];
 
 /* Informations spécifiques par outil : méthodes d'utilisation + FAQ */
@@ -1562,9 +1752,20 @@ function filterChip(el, catId){
   if(catId){ scrollToCategory(catId); }
   else { window.scrollTo({top:0, behavior:'smooth'}); }
 }
+function showView(id){
+  ['homeView','detailView','resourceView','categoryView'].forEach(v => {
+    document.getElementById(v).classList.toggle('hidden', v !== id);
+  });
+}
 function scrollToCategory(id){
-  const el = document.getElementById('cat-' + id);
-  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  const wasHome = !document.getElementById('homeView').classList.contains('hidden');
+  showView('homeView');
+  history.pushState({}, '', '#');
+  const doScroll = () => {
+    const el = document.getElementById('cat-' + id);
+    if(el) el.scrollIntoView({behavior: wasHome ? 'smooth' : 'instant', block:'start'});
+  };
+  wasHome ? doScroll() : setTimeout(doScroll, 30);
 }
 
 function toolCardHTML(t){
@@ -1593,15 +1794,16 @@ function renderCategorySections(){
   let html = '';
   CATEGORIES.forEach((c, idx) => {
     const tools = byCategory[c.id];
+    const preview = tools.slice(0, 6);
     const adCard = `<div class="card ad"><div class="card-icon">Ad</div><div class="card-body"><span class="tag-sp">Sponsorisé</span><h3>Votre outil ici</h3><p>Emplacement carte native · s'intègre à la grille de résultats.</p></div></div>`;
-    const cardArr = tools.map(toolCardHTML);
+    const cardArr = preview.map(toolCardHTML);
     cardArr.splice(Math.min(3, cardArr.length), 0, adCard);
 
     html += `
     <section class="section" id="cat-${c.id}">
       <div class="section-head">
         <h2><span class="ico">${c.icon}</span> ${c.label}</h2>
-        <button class="see-all">Tout afficher →</button>
+        <button class="see-all" onclick="openCategory('${c.id}')">Tout afficher (${tools.length}) →</button>
       </div>
       <p class="section-desc">${CAT_DESC[c.id]}</p>
       <div class="grid">${cardArr.join('')}</div>
@@ -1752,20 +1954,32 @@ function openTool(id){
     </div>
   `;
 
-  document.getElementById('homeView').classList.add('hidden');
-  document.getElementById('resourceView').classList.add('hidden');
-  document.getElementById('detailView').classList.remove('hidden');
+  showView('detailView');
   window.scrollTo({top:0, behavior:'instant'});
   history.pushState({tool:id}, '', '#tool-' + id);
   initAds(document.getElementById('detailView'));
 }
 
 function goHome(){
-  document.getElementById('detailView').classList.add('hidden');
-  document.getElementById('resourceView').classList.add('hidden');
-  document.getElementById('homeView').classList.remove('hidden');
+  showView('homeView');
   window.scrollTo({top:0, behavior:'instant'});
   history.pushState({}, '', '#');
+}
+
+function openCategory(id){
+  const c = CATEGORIES.find(x => x.id === id);
+  if(!c) return;
+  const tools = byCategory[id];
+  document.getElementById('categoryView').innerHTML = `
+    <button class="back-btn" onclick="goHome()">← Retour au répertoire</button>
+    <div class="section-head" style="margin-bottom:6px;">
+      <h2><span class="ico">${c.icon}</span> ${c.label}</h2>
+    </div>
+    <p class="section-desc" style="margin:0 0 20px;">${CAT_DESC[c.id]} · ${tools.length} outil${tools.length>1?'s':''}</p>
+    <div class="grid">${tools.map(toolCardHTML).join('')}</div>
+  `;
+  showView('categoryView');
+  window.scrollTo({top:0, behavior:'instant'});
 }
 
 /* =========================================================
@@ -1822,34 +2036,94 @@ const RESOURCES = {
       </div>
     `
   },
-  guides:{
-    title:"Guides & tutoriels",
-    meta:"Prise en main pas-à-pas",
-    html:`
-      <div class="article-card"><h3>Écrire des prompts efficaces : les 7 règles de base</h3><p>1. Donnez un rôle à l'IA. 2. Précisez le format de sortie. 3. Fournissez des exemples. 4. Cadrez la longueur. 5. Précisez la cible. 6. Itérez plutôt que de tout demander d'un coup. 7. Corrigez ce qui cloche par un message de suivi.</p></div>
-      <div class="article-card"><h3>Créer sa première image avec Midjourney</h3><p>Ouvrez midjourney.com/imagine, tapez un prompt descriptif (sujet + style + éclairage + cadrage), ajustez le ratio via --ar 16:9 et upscalez la meilleure variante. Le style « --style raw » désature l'esthétique par défaut pour un rendu plus neutre.</p></div>
-      <div class="article-card"><h3>Automatiser sa veille avec un agent Zapier</h3><p>Créez un agent Zapier connecté à Gmail et à Notion. Décrivez-lui : « chaque email de newsletter, résume-le en 3 puces et ajoute-le à ma base Notion Veille ». Testez, puis activez le déclencheur.</p></div>
-      <div class="article-card"><h3>Cloner sa voix avec ElevenLabs (sans se faire piéger)</h3><p>Passez sur le plan Creator, ouvrez Voice Lab, uploadez 1 à 5 min de voix propre (sans bruit de fond ni musique). Nommez la voix et testez avec une phrase courte. Rappel : les CGU imposent d'être propriétaire ou explicitement autorisé pour toute voix clonée.</p></div>
-      <div class="article-card"><h3>Choisir entre une API OpenAI, Anthropic et open source</h3><p>OpenAI reste le plus simple à intégrer et documenté. Anthropic est meilleur en écriture longue et gestion de longs contextes. Les modèles open source (Llama, Qwen, DeepSeek) offrent le meilleur contrôle et confidentialité, mais nécessitent une infrastructure.</p></div>
-      <div class="article-card"><h3>Sécuriser ses données quand on utilise une IA au travail</h3><p>Désactivez l'entraînement sur vos données dans les paramètres, utilisez les versions Team/Business qui garantissent la non-utilisation, anonymisez les données sensibles avant collage, et vérifiez la juridiction d'hébergement (UE/US/CN).</p></div>
-    `
-  }
 };
 
+const GUIDES = [
+  { id:'prompts', title:"Écrire des prompts efficaces : les 7 règles de base",
+    summary:"Les principes essentiels pour obtenir de meilleures réponses de n'importe quelle IA.",
+    body:`<p>1. <b>Donnez un rôle à l'IA</b> : « Tu es un rédacteur SEO senior… » cadre le ton et le niveau d'expertise attendu.</p>
+      <p>2. <b>Précisez le format de sortie</b> : liste à puces, tableau, JSON, nombre de mots — plus c'est précis, moins vous corrigerez après coup.</p>
+      <p>3. <b>Fournissez des exemples</b> : un exemple de ce que vous voulez (ou ne voulez pas) vaut souvent mieux qu'un paragraphe d'explication.</p>
+      <p>4. <b>Cadrez la longueur</b> : « en 3 phrases », « en 500 mots » évite les réponses trop courtes ou trop longues.</p>
+      <p>5. <b>Précisez la cible</b> : le même sujet expliqué à un enfant ou à un expert change complètement la réponse.</p>
+      <p>6. <b>Itérez plutôt que de tout demander d'un coup</b> : une première réponse courte puis des ajustements successifs donnent souvent un meilleur résultat qu'un prompt géant.</p>
+      <p>7. <b>Corrigez par un message de suivi</b> : « trop formel, réécris plus simplement » fonctionne mieux que de recommencer de zéro.</p>` },
+  { id:'midjourney-prise-en-main', title:"Créer sa première image avec Midjourney",
+    summary:"Du compte Discord à la première génération, pas à pas.",
+    body:`<p>Ouvrez <b>midjourney.com/imagine</b> (ou le serveur Discord officiel) et connectez-vous.</p>
+      <p>Tapez un prompt descriptif structuré : <i>sujet</i> + <i>style</i> + <i>éclairage</i> + <i>cadrage</i>. Exemple : « portrait d'une exploratrice, style aquarelle, lumière dorée de fin de journée, plan rapproché ».</p>
+      <p>Ajustez le ratio avec <code>--ar 16:9</code> pour un format paysage, ou laissez le défaut carré.</p>
+      <p>Le paramètre <code>--style raw</code> désature l'esthétique par défaut de Midjourney pour un rendu plus neutre et photographique.</p>
+      <p>Une fois les 4 variantes générées, cliquez sur U1-U4 pour upscaler celle que vous préférez en haute résolution.</p>` },
+  { id:'zapier-veille', title:"Automatiser sa veille avec un agent Zapier",
+    summary:"Mettre en place un agent qui résume automatiquement vos newsletters.",
+    body:`<p>Créez un agent sur <b>zapier.com/agents</b> connecté à Gmail et à Notion.</p>
+      <p>Décrivez-lui l'instruction en langage naturel : « chaque email de newsletter, résume-le en 3 puces et ajoute-le à ma base Notion Veille ».</p>
+      <p>Testez sur un email existant avant d'activer le déclencheur en temps réel, pour vérifier le format du résumé.</p>
+      <p>Activez ensuite le déclencheur automatique — l'agent tournera en arrière-plan sans intervention.</p>` },
+  { id:'elevenlabs-clonage', title:"Cloner sa voix avec ElevenLabs (sans se faire piéger)",
+    summary:"La procédure propre, et les règles légales à connaître.",
+    body:`<p>Passez sur un plan <b>Creator</b> ou supérieur (le clonage instantané n'est pas disponible en gratuit).</p>
+      <p>Ouvrez <b>Voice Lab</b> puis « Add Voice » → Instant Voice Cloning.</p>
+      <p>Uploadez 1 à 5 minutes d'échantillon audio propre, sans bruit de fond ni musique, idéalement en une seule prise continue.</p>
+      <p>Nommez la voix et testez-la avec une phrase courte avant de l'utiliser en production.</p>
+      <p><b>Important :</b> les CGU imposent d'être propriétaire de la voix ou d'avoir une autorisation explicite de la personne concernée pour tout clonage.</p>` },
+  { id:'choisir-api', title:"Choisir entre une API OpenAI, Anthropic et open source",
+    summary:"Un comparatif rapide pour orienter son choix technique.",
+    body:`<p><b>OpenAI</b> reste le plus simple à intégrer, le mieux documenté, et dispose du plus large écosystème d'outils tiers.</p>
+      <p><b>Anthropic (Claude)</b> se distingue sur l'écriture longue, le raisonnement prudent et la gestion de très longs contextes (jusqu'à 200k tokens).</p>
+      <p>Les modèles <b>open source</b> (Llama, Qwen, DeepSeek) offrent le meilleur contrôle et la meilleure confidentialité — les données ne quittent jamais votre infrastructure — mais nécessitent du matériel ou un hébergeur spécialisé.</p>
+      <p>Pour un prototype rapide : OpenAI ou Anthropic. Pour une donnée sensible ou un gros volume : envisager l'open source auto-hébergé.</p>` },
+  { id:'securite-ia-travail', title:"Sécuriser ses données quand on utilise une IA au travail",
+    summary:"Les réflexes à adopter avant de coller des données professionnelles dans un chat IA.",
+    body:`<p>Désactivez l'entraînement du modèle sur vos données dans les paramètres de confidentialité de l'outil utilisé.</p>
+      <p>Privilégiez les versions <b>Team / Business / Enterprise</b>, qui garantissent contractuellement la non-utilisation des données pour l'entraînement.</p>
+      <p>Anonymisez les données sensibles (noms, montants, identifiants clients) avant de les coller dans une conversation.</p>
+      <p>Vérifiez la juridiction d'hébergement des données (UE, US, Chine…) selon vos contraintes réglementaires internes.</p>` }
+];
+
 function openResource(key){
+  if(key === 'guides') return openGuidesList();
   const r = RESOURCES[key];
   if(!r) return;
-  const wrap = document.getElementById('resourceView');
-  wrap.innerHTML = `
+  document.getElementById('resourceView').innerHTML = `
     <div class="article">
       <button class="back-btn" onclick="goHome()">← Retour au répertoire</button>
       <h1>${r.title}</h1>
       <div class="meta">${r.meta}</div>
       ${r.html}
     </div>`;
-  document.getElementById('homeView').classList.add('hidden');
-  document.getElementById('detailView').classList.add('hidden');
-  wrap.classList.remove('hidden');
+  showView('resourceView');
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+function openGuidesList(){
+  document.getElementById('resourceView').innerHTML = `
+    <div class="article">
+      <button class="back-btn" onclick="goHome()">← Retour au répertoire</button>
+      <h1>Guides & tutoriels</h1>
+      <div class="meta">Prise en main pas-à-pas</div>
+      ${GUIDES.map(g => `
+        <div class="article-card" style="cursor:pointer;" onclick="openGuide('${g.id}')">
+          <h3>${g.title}</h3>
+          <p>${g.summary}</p>
+        </div>`).join('')}
+    </div>`;
+  showView('resourceView');
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+function openGuide(id){
+  const g = GUIDES.find(x => x.id === id);
+  if(!g) return;
+  document.getElementById('resourceView').innerHTML = `
+    <div class="article">
+      <button class="back-btn" onclick="openGuidesList()">← Retour aux guides</button>
+      <h1>${g.title}</h1>
+      <div class="meta">Guide & tutoriel</div>
+      <div class="article-card">${g.body}</div>
+    </div>`;
+  showView('resourceView');
   window.scrollTo({top:0, behavior:'instant'});
 }
 
@@ -1859,8 +2133,7 @@ window.addEventListener('popstate', () => {
     const id = hash.replace('#tool-','');
     if(TOOLS.find(t => t.id === id)) openTool(id);
   } else {
-    document.getElementById('detailView').classList.add('hidden');
-    document.getElementById('homeView').classList.remove('hidden');
+    showView('homeView');
   }
 });
 
