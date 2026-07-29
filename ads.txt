@@ -1,0 +1,8 @@
+# Fichier ads.txt — Google AdSense
+# À placer À LA RACINE de votre domaine, ex : https://votredomaine.com/ads.txt
+# (pas dans un sous-dossier, sinon Google ne le détectera pas)
+#
+# Remplacez pub-XXXXXXXXXXXXXXXX par VOTRE ID éditeur AdSense
+# (le même que celui utilisé dans index.html, avec le préfixe "pub-" au lieu de "ca-pub-")
+
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
