@@ -184,7 +184,7 @@ body{
 }
 .search-results .sr-item:last-child{ border-bottom:none; }
 .search-results .sr-item:hover{ background:var(--panel-2); }
-.search-results .sr-icon{ width:30px;height:30px;border-radius:8px; background:#fff; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; overflow:hidden; padding:2px;}
+.search-results .sr-icon{ width:30px;height:30px;border-radius:8px; background:#fff; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; overflow:hidden; padding:4px; position:relative;}
 .search-results .sr-icon img{ width:100%; height:100%; object-fit:contain;}
 .search-results .sr-name{ font-size:13px; font-weight:600; }
 .search-results .sr-cat{ font-size:11px; color:var(--text-faint); }
@@ -278,7 +278,7 @@ body{
   width:44px;height:44px;border-radius:11px; flex-shrink:0;
   display:flex;align-items:center;justify-content:center; font-size:16px; font-weight:700;
   color:#080b14; font-family:'Space Grotesk',sans-serif; position:relative;
-  background:#fff; overflow:hidden; padding:2px;
+  background:#fff; overflow:hidden; padding:4px;
 }
 .card-icon img{ width:100%; height:100%; object-fit:contain; display:block; }
 .card-icon.fallback{ padding:0; }
@@ -288,6 +288,9 @@ body{
 .badge{ font-size:9px; font-family:'JetBrains Mono',monospace; padding:2px 6px; border-radius:5px; letter-spacing:.5px; }
 .badge.new{ background:rgba(0,224,198,0.15); color:var(--accent-2); }
 .badge.hot{ background:rgba(255,92,168,0.15); color:var(--accent-3); }
+.badge.free{ background:rgba(141,255,92,0.15); color:#8dff5c; }
+.chip.free-toggle{ display:flex; align-items:center; gap:6px; }
+body.show-free-only .grid .card:not(.is-free){ display:none; }
 .card-body p{ font-size:12.5px; color:var(--text-faint); line-height:1.45; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;}
 
 /* Native ad card blended into grid */
@@ -329,7 +332,7 @@ body{
   width:100%; aspect-ratio:1/1; border-radius:20px; border:1px solid var(--border-strong);
   display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif;
   font-size:54px; font-weight:700; color:#080b14; box-shadow:var(--shadow);
-  background:#fff; overflow:hidden; padding:26px;
+  background:#fff; overflow:hidden; padding:26px; position:relative;
 }
 .detail-thumb img{ width:100%; height:100%; object-fit:contain; }
 
@@ -413,7 +416,7 @@ body{
 .related-tools{ display:flex; flex-direction:column; gap:10px; }
 .related-item{ display:flex; align-items:center; gap:10px; cursor:pointer; padding:6px; border-radius:10px; }
 .related-item:hover{ background:var(--panel-2); }
-.related-item .ri-icon{ width:32px;height:32px;border-radius:8px; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; background:#fff; overflow:hidden; padding:2px;}
+.related-item .ri-icon{ width:32px;height:32px;border-radius:8px; display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; color:#080b14; font-family:'Space Grotesk',sans-serif; flex-shrink:0; background:#fff; overflow:hidden; padding:4px; position:relative;}
 .related-item .ri-icon img{ width:100%; height:100%; object-fit:contain;}
 .related-item .ri-name{ font-size:13px; font-weight:600; }
 
@@ -503,7 +506,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
         <button data-mode="dark" class="active" title="Mode sombre">☾</button>
         <button data-mode="light" title="Mode clair">☀</button>
       </div>
-      <button class="submit-btn">+ Soumettre un outil</button>
+      <button class="submit-btn" onclick="openSubmit()">+ Soumettre un outil</button>
     </div>
 
     <!-- ============ HOME VIEW ============ -->
@@ -548,6 +551,9 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
     <!-- ============ CATEGORY VIEW ============ -->
     <div id="categoryView" class="detail hidden"></div>
 
+    <!-- ============ SUBMIT VIEW ============ -->
+    <div id="submitView" class="hidden"></div>
+
   </main>
 </div>
 
@@ -569,7 +575,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
       <a>Actualités IA</a>
       <a>Comparatifs</a>
       <a>Guides</a>
-      <a>Soumettre un outil</a>
+      <a onclick="openSubmit()">Soumettre un outil</a>
     </div>
     <div>
       <h4>Publicité</h4>
@@ -1712,10 +1718,15 @@ const byCategory = {};
 CATEGORIES.forEach(c => byCategory[c.id] = []);
 TOOLS.forEach((t,i) => { t.seed = i; byCategory[t.category].push(t); });
 
+function isFree(t){
+  return t.pricing.some(p => /^0\s*\$/.test(p.price.trim()));
+}
 function badgeHTML(t){
-  if(t.badge === 'hot') return `<span class="badge hot">Populaire</span>`;
-  if(t.badge === 'new') return `<span class="badge new">Nouveau</span>`;
-  return '';
+  let html = '';
+  if(t.badge === 'hot') html += `<span class="badge hot">Populaire</span>`;
+  if(t.badge === 'new') html += `<span class="badge new">Nouveau</span>`;
+  if(isFree(t)) html += `<span class="badge free">Gratuit</span>`;
+  return html;
 }
 function initials(name){
   const parts = name.replace(/[().]/g,'').split(' ').filter(Boolean);
@@ -1744,18 +1755,44 @@ function renderSidebar(){
 function renderChips(){
   const chips = document.getElementById('chips');
   chips.innerHTML = `<div class="chip on" onclick="filterChip(this,null)">Tout</div>` +
-    CATEGORIES.map(c => `<div class="chip" onclick="filterChip(this,'${c.id}')">${c.label}</div>`).join('');
+    CATEGORIES.map(c => `<div class="chip" onclick="filterChip(this,'${c.id}')">${c.label}</div>`).join('') +
+    `<div class="chip free-toggle" id="freeChip" onclick="toggleFreeFilter(this)">🎁 Gratuit uniquement</div>`;
 }
 function filterChip(el, catId){
-  document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+  document.querySelectorAll('.chip').forEach(c => { if(c.id !== 'freeChip') c.classList.remove('on'); });
   el.classList.add('on');
   if(catId){ scrollToCategory(catId); }
   else { window.scrollTo({top:0, behavior:'smooth'}); }
 }
+function toggleFreeFilter(el){
+  document.body.classList.toggle('show-free-only');
+  el.classList.toggle('on', document.body.classList.contains('show-free-only'));
+}
 function showView(id){
-  ['homeView','detailView','resourceView','categoryView'].forEach(v => {
+  ['homeView','detailView','resourceView','categoryView','submitView'].forEach(v => {
     document.getElementById(v).classList.toggle('hidden', v !== id);
   });
+}
+
+/* À CONFIGURER : collez ici le lien de votre Google Form (Form > Envoyer > lien) */
+const SUBMIT_FORM_URL = '';
+
+function openSubmit(){
+  document.getElementById('submitView').innerHTML = `
+    <div class="article">
+      <button class="back-btn" onclick="goHome()">← Retour au répertoire</button>
+      <h1>Soumettre un outil</h1>
+      <div class="meta">Proposez un outil IA à ajouter au répertoire</div>
+      <div class="article-card">
+        <h3>Comment ça marche</h3>
+        <p>Remplissez le formulaire ci-dessous avec le nom de l'outil, son site officiel, sa catégorie et une courte description. Chaque soumission est vérifiée manuellement avant publication.</p>
+        ${SUBMIT_FORM_URL
+          ? `<p style="margin-top:16px;"><a class="visit-btn" href="${SUBMIT_FORM_URL}" target="_blank" rel="noopener">Ouvrir le formulaire ↗</a></p>`
+          : `<p style="margin-top:16px;color:var(--text-faint);font-style:italic;">Formulaire en cours de configuration — revenez bientôt, ou contactez-nous directement.</p>`}
+      </div>
+    </div>`;
+  showView('submitView');
+  window.scrollTo({top:0, behavior:'instant'});
 }
 function scrollToCategory(id){
   const wasHome = !document.getElementById('homeView').classList.contains('hidden');
@@ -1769,7 +1806,7 @@ function scrollToCategory(id){
 }
 
 function toolCardHTML(t){
-  return `<a class="card" onclick="openTool('${t.id}');return false;" href="#tool-${t.id}">
+  return `<a class="card${isFree(t) ? ' is-free' : ''}" onclick="openTool('${t.id}');return false;" href="#tool-${t.id}">
     <div class="card-icon">${logoImg(t,64)}</div>
     <div class="card-body">
       <h3>${t.name} ${badgeHTML(t)}</h3>
@@ -1795,9 +1832,7 @@ function renderCategorySections(){
   CATEGORIES.forEach((c, idx) => {
     const tools = byCategory[c.id];
     const preview = tools.slice(0, 6);
-    const adCard = `<div class="card ad"><div class="card-icon">Ad</div><div class="card-body"><span class="tag-sp">Sponsorisé</span><h3>Votre outil ici</h3><p>Emplacement carte native · s'intègre à la grille de résultats.</p></div></div>`;
     const cardArr = preview.map(toolCardHTML);
-    cardArr.splice(Math.min(3, cardArr.length), 0, adCard);
 
     html += `
     <section class="section" id="cat-${c.id}">
@@ -1877,12 +1912,11 @@ function pricingHTML(t){
 
 function relatedHTML(t){
   const related = TOOLS.filter(x => x.category === t.category && x.id !== t.id).slice(0,4);
-  if(!related.length) return '<p style="font-size:12.5px;color:var(--text-faint);">Aucun outil similaire pour le moment.</p>';
-  return related.map(r => `
-    <div class="related-item" onclick="openTool('${r.id}')">
-      <div class="ri-icon">${logoImg(r,64)}</div>
-      <div class="ri-name">${r.name}</div>
-    </div>`).join('');
+  if(!related.length) return '';
+  return `<div class="dblock" style="margin-top:6px;">
+    <h2>Outils similaires à ${t.name}</h2>
+    <div class="grid">${related.map(toolCardHTML).join('')}</div>
+  </div>`;
 }
 
 function openTool(id){
@@ -1935,10 +1969,6 @@ function openTool(id){
           <div class="info-row"><span>Modèle</span><span>Freemium</span></div>
           <div class="info-row"><span>Site officiel</span><span><a href="${t.website}" target="_blank" rel="noopener" style="color:var(--accent-2);text-decoration:none;">Visiter ↗</a></span></div>
         </div>
-        <div class="info-card">
-          <h3>Outils similaires</h3>
-          <div class="related-tools">${relatedHTML(t)}</div>
-        </div>
         <div class="detail-ad">
           <span class="ad-label">Publicité</span>
           <div class="ad-slot">
@@ -1952,6 +1982,8 @@ function openTool(id){
         </div>
       </div>
     </div>
+
+    ${relatedHTML(t)}
   `;
 
   showView('detailView');
