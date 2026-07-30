@@ -5,4 +5,5 @@
 # Remplacez pub-XXXXXXXXXXXXXXXX par VOTRE ID éditeur AdSense
 # (le même que celui utilisé dans index.html, avec le préfixe "pub-" au lieu de "ca-pub-")
 
-google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-1795413868017320, DIRECT, f08c47fec0942fa0
+
