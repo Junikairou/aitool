@@ -1,8 +1,8 @@
-# NEXORA — Répertoire d'outils IA
+# AI Need Tools — Répertoire d'outils IA
 
 Un répertoire web francophone qui cartographie les meilleurs outils d'intelligence artificielle du marché, classés par catégorie et enrichis de fiches détaillées (fonctionnalités, tarifs, guides d'utilisation, FAQ).
 
-**Site en ligne :** https://junikairou.github.io/aitool/
+**Site en ligne :** https://aineedtools.com
 **Dépôt :** https://github.com/Junikairou/aitool
 
 ---

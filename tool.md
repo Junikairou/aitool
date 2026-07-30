@@ -1,4 +1,4 @@
-# NEXORA — Handoff (à donner à n'importe quelle IA)
+# AI Need Tools — Handoff (à donner à n'importe quelle IA)
 
 Ce document sert de brief complet pour reprendre le projet depuis zéro avec n'importe quelle IA (Claude, ChatGPT, Gemini…). Il contient : le pitch, les règles, les emplacements à modifier, l'historique et le backlog.
 
@@ -19,7 +19,7 @@ Ce document sert de brief complet pour reprendre le projet depuis zéro avec n'i
 
 Répertoire web francophone d'outils IA. Un seul fichier `index.html`, vanilla HTML/CSS/JS, aucune dépendance, aucun build. Monétisation prévue via Google AdSense. Hébergement gratuit via GitHub Pages.
 
-- **Site :** https://junikairou.github.io/aitool/
+- **Site :** https://aineedtools.com (domaine custom, voir `CNAME`) — sinon https://junikairou.github.io/aitool/
 - **Repo :** https://github.com/Junikairou/aitool
 - **Branche principale :** `main`
 - **Compte GitHub :** `Junikairou`
@@ -31,8 +31,9 @@ Répertoire web francophone d'outils IA. Un seul fichier `index.html`, vanilla H
 aitool/
 ├── index.html          # ~1900 lignes — TOUT est ici (HTML, CSS, JS, données)
 ├── ads.txt             # fichier AdSense (ID éditeur à mettre à jour)
+├── CNAME               # domaine custom GitHub Pages (aineedtools.com)
 ├── README.md           # présentation courte du projet
-└── PROJECT_CONTEXT.md  # ce document
+└── tool.md             # ce document
 ```
 
 ## 3. Structure interne de `index.html`
@@ -155,4 +156,4 @@ git push origin main
 
 Copier-coller ce texte dans le premier message :
 
-> Je travaille sur NEXORA, un répertoire d'outils IA en un fichier `index.html` vanilla. Lis `PROJECT_CONTEXT.md` et `README.md` dans le dépôt https://github.com/Junikairou/aitool pour tout le contexte. Suis strictement les règles de contenu et techniques (guillemets JS, id unique, pas de dépendance). Ma tâche : [décrire].
+> Je travaille sur AI Need Tools, un répertoire d'outils IA en un fichier `index.html` vanilla. Lis `tool.md` et `README.md` dans le dépôt pour tout le contexte. Suis strictement les règles de contenu et techniques (guillemets JS, id unique, pas de dépendance). Ma tâche : [décrire].

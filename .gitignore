@@ -1,0 +1,6 @@
+# Fichiers locaux et secrets éventuels
+.env
+.env.*
+*.log
+Thumbs.db
+Desktop.ini
