@@ -3,7 +3,7 @@
 Un répertoire web francophone qui cartographie les meilleurs outils d'intelligence artificielle du marché, classés par catégorie et enrichis de fiches détaillées (fonctionnalités, tarifs, guides d'utilisation, FAQ).
 
 **Site en ligne :** https://aineedtools.com
-**Dépôt :** https://github.com/Junikairou/aitool
+**Dépôt :** https://github.com/Junikairou/aineedtools
 
 ---
 

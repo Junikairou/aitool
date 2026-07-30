@@ -19,8 +19,8 @@ Ce document sert de brief complet pour reprendre le projet depuis zéro avec n'i
 
 Répertoire web francophone d'outils IA. Un seul fichier `index.html`, vanilla HTML/CSS/JS, aucune dépendance, aucun build. Monétisation prévue via Google AdSense. Hébergement gratuit via GitHub Pages.
 
-- **Site :** https://aineedtools.com (domaine custom, voir `CNAME`) — sinon https://junikairou.github.io/aitool/
-- **Repo :** https://github.com/Junikairou/aitool
+- **Site :** https://aineedtools.com (domaine custom, voir `CNAME`) — sinon https://junikairou.github.io/aineedtools/
+- **Repo :** https://github.com/Junikairou/aineedtools
 - **Branche principale :** `main`
 - **Compte GitHub :** `Junikairou`
 - **Email git :** `jkairou@gmail.com`
@@ -28,7 +28,7 @@ Répertoire web francophone d'outils IA. Un seul fichier `index.html`, vanilla H
 ## 2. Structure du dépôt
 
 ```
-aitool/
+aineedtools/
 ├── index.html          # ~1900 lignes — TOUT est ici (HTML, CSS, JS, données)
 ├── ads.txt             # fichier AdSense (ID éditeur à mettre à jour)
 ├── CNAME               # domaine custom GitHub Pages (aineedtools.com)
