@@ -164,12 +164,12 @@ body{
 @media (max-width:960px){ .burger{ display:block; } }
 
 .search{
-  flex:1; display:flex; align-items:center; gap:10px;
+  flex:1; display:flex; align-items:center; gap:10px; min-width:0;
   background:var(--panel); border:1px solid var(--border); border-radius:12px;
   padding:10px 16px; max-width:560px; position:relative;
 }
 .search input{
-  background:none;border:none;outline:none;color:var(--text);font-size:14px;width:100%;font-family:'Inter',sans-serif;
+  background:none;border:none;outline:none;color:var(--text);font-size:14px;width:100%;min-width:0;font-family:'Inter',sans-serif;
 }
 .search input::placeholder{ color:var(--text-faint); }
 .search .kbd{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--text-faint); border:1px solid var(--border); padding:2px 6px; border-radius:5px;}
@@ -444,6 +444,35 @@ footer{ padding:50px 28px 30px; border-top:1px solid var(--border); margin-top:4
 .detail-ad .ad-slot{ min-height:250px; margin-top:8px; }
 .ad-label{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:1.5px; color:var(--text-faint); text-transform:uppercase; display:block; margin-bottom:8px; text-align:center; }
 
+/* ---------- Responsive : tablette & mobile ---------- */
+@media (max-width:960px){
+  .search{ max-width:none; }
+}
+@media (max-width:720px){
+  .topbar{ flex-wrap:wrap; padding:12px 16px; gap:10px; }
+  .search{ order:3; flex-basis:100%; max-width:none; }
+  .search .kbd{ display:none; }
+  .submit-btn{ padding:9px 14px; font-size:12.5px; }
+  .hero{ padding:36px 16px 26px; }
+  .hero p{ padding:0 4px; }
+  .stat-row{ gap:20px 26px; }
+  .top-ad{ margin:22px 16px 6px; padding:14px 16px; }
+  .chips{ padding:20px 16px 4px; }
+  .section{ padding:26px 16px 4px; }
+  .mid-ad-wrap{ margin:26px 16px!important; }
+  .detail{ padding:20px 16px 6px; }
+  .detail-thumb{ max-width:200px; margin:0 auto; }
+  .article{ padding:20px 16px; }
+  footer{ padding:36px 16px 22px; }
+}
+@media (max-width:480px){
+  .footer-grid{ grid-template-columns:1fr; gap:24px; }
+  .hero h1{ letter-spacing:-.2px; }
+  .stat b{ font-size:19px; }
+  .card{ padding:13px; gap:10px; }
+  .grid{ gap:11px; }
+}
+
 /* scrollbar */
 ::-webkit-scrollbar{ width:10px; height:10px; }
 ::-webkit-scrollbar-thumb{ background:var(--border-strong); border-radius:10px; }
@@ -600,6 +629,11 @@ const CATEGORIES = [
   { id:'productivite',   label:"Productivité & bureau",           icon:'▣' },
   { id:'agents',         label:"Agents & automatisation",         icon:'◈' },
   { id:'chat',           label:"Assistants conversationnels",     icon:'◎' },
+  { id:'finance',        label:"Finance & économie",              icon:'€' },
+  { id:'education',      label:"Éducation & apprentissage",       icon:'✎' },
+  { id:'seo',            label:"SEO & marketing digital",         icon:'⇧' },
+  { id:'juridique',      label:"Juridique",                       icon:'§' },
+  { id:'design3d',       label:"3D, jeu vidéo & design produit",  icon:'⬢' },
 ];
 
 const PALETTE = ['#7c5cff','#00e0c6','#ff5ca8','#5ca8ff','#ffb35c','#8dff5c'];
@@ -1226,6 +1260,276 @@ const TOOLS = [
     desc:"You.com combine recherche web et chat IA, avec des modes spécialisés (recherche, code, image) et la possibilité de choisir le modèle sous-jacent parmi plusieurs options.",
     features:["Recherche web enrichie de réponses IA sourcées","Choix du modèle IA utilisé (GPT, Claude, etc.)","Modes spécialisés : code, image, recherche académique","Espace de travail personnalisable"],
     pricing:[{p:'Free',price:'0 $',d:'Recherches limitées par jour'},{p:'Pro',price:'~15 $/mois',d:'Recherches et modèles illimités'}] },
+
+  // ============ FINANCE & ÉCONOMIE ============
+  { id:'kavout', name:'Kavout', category:'finance', badge:'', tagline:"Notation IA d'actions (Kai Score) pour investisseurs particuliers.",
+    website:'https://www.kavout.com', tags:['Bourse','Score IA','Investissement'],
+    desc:"Kavout attribue un « Kai Score » à des milliers d'actions cotées en s'appuyant sur des modèles quantitatifs, pour aider les investisseurs particuliers à repérer des opportunités.",
+    features:["Kai Score par action, mis à jour quotidiennement","Écrans thématiques et sectoriels","Alertes personnalisées sur les scores","Analyses de fonds et ETF"],
+    pricing:[{p:'Free',price:'0 $',d:'Aperçu limité'},{p:'Premium',price:'~30 $/mois',d:'Accès complet aux scores et écrans'}] },
+
+  { id:'trendspider', name:'TrendSpider', category:'finance', badge:'', tagline:"Analyse technique automatisée avec détection de motifs graphiques.",
+    website:'https://trendspider.com', tags:['Trading','Analyse technique','Alertes'],
+    desc:"TrendSpider automatise l'analyse technique : détection de figures chartistes, tracé de tendances, backtesting de stratégies et alertes multi-timeframes.",
+    features:["Détection automatique de patterns chartistes","Tracé automatique des lignes de tendance","Backtesting de stratégies sans code","Alertes conditionnelles multi-timeframes"],
+    pricing:[{p:'Standard',price:'~39 $/mois',d:"Outils d'analyse de base"},{p:'Advanced',price:'~65 $/mois',d:'Backtesting et alertes étendues'}] },
+
+  { id:'stockstory', name:'StockStory', category:'finance', badge:'', tagline:"Analyses de sociétés cotées rédigées et actualisées par IA.",
+    website:'https://stockstory.org', tags:['Analyse fondamentale','Actions','Rapports'],
+    desc:"StockStory produit des analyses fondamentales lisibles sur les sociétés cotées américaines, actualisées après chaque publication de résultats grâce à l'IA.",
+    features:["Fiches d'analyse pour des milliers d'actions","Mise à jour après chaque publication de résultats","Vulgarisation des chiffres clés","Comparaison entre sociétés d'un même secteur"],
+    pricing:[{p:'Free',price:'0 $',d:'Accès de base'},{p:'Pro',price:'~20 $/mois',d:'Analyses complètes et alertes'}] },
+
+  { id:'copilotmoney', name:'Copilot Money', category:'finance', badge:'', tagline:"Application de suivi budgétaire personnel avec catégorisation IA.",
+    website:'https://copilot.money', tags:['Budget','Personnel','iOS'],
+    desc:"Copilot Money agrège les comptes bancaires et cartes pour offrir un suivi budgétaire personnel visuel, avec catégorisation automatique par IA des transactions.",
+    features:["Agrégation multi-comptes bancaires (US/UK)","Catégorisation intelligente des dépenses","Objectifs et budgets personnalisables","Application iOS et macOS soignée"],
+    pricing:[{p:'Essai',price:'0 $',d:'2 mois offerts'},{p:'Abonnement',price:'~13 $/mois',d:'Fonctionnalités complètes'}] },
+
+  { id:'domo', name:'Domo AI', category:'finance', badge:'', tagline:"Plateforme de BI d'entreprise enrichie d'assistants IA.",
+    website:'https://www.domo.com/ai', tags:['BI','Entreprise','Tableaux de bord'],
+    desc:"Domo est une plateforme de business intelligence pour entreprises, dont les nouvelles fonctions IA génèrent des tableaux de bord, résumés de KPI et prévisions en langage naturel.",
+    features:["Génération de dashboards par prompt","Résumés automatiques d'anomalies","Prévisions et scénarios financiers","Connecteurs vers des centaines de sources"],
+    pricing:[{p:'Business',price:'Sur devis',d:'Facturation par utilisateur'},{p:'Enterprise',price:'Sur devis',d:'Volumes et gouvernance étendus'}] },
+
+  { id:'digits', name:'Digits', category:'finance', badge:'', tagline:"Comptabilité IA en temps réel pour startups et TPE.",
+    website:'https://digits.com', tags:['Comptabilité','Startups','Automatisation'],
+    desc:"Digits automatise la tenue de comptes pour les petites entreprises, avec catégorisation IA des transactions et génération de rapports financiers en temps réel.",
+    features:["Catégorisation automatique des transactions bancaires","Rapports P&L et flux de trésorerie en temps réel","Facturation client intégrée","Collaboration avec l'expert-comptable"],
+    pricing:[{p:'Starter',price:'~30 $/mois',d:'Comptabilité de base'},{p:'Pro',price:'Sur devis',d:'Facturation et projections avancées'}] },
+
+  { id:'pilot', name:'Pilot', category:'finance', badge:'', tagline:"Service de comptabilité pour startups, boosté par l'IA en interne.",
+    website:'https://pilot.com', tags:['Comptabilité','Externalisée','Startups'],
+    desc:"Pilot propose une comptabilité externalisée pour startups, avec des experts humains qui s'appuient sur des outils IA propriétaires pour produire les rapports mensuels.",
+    features:["Comptabilité mensuelle par des experts humains","Automatisation IA des rapprochements bancaires","Reporting adapté aux levées de fonds","Options paie et déclarations fiscales"],
+    pricing:[{p:'Core',price:'À partir de 499 $/mois',d:'Comptabilité mensuelle standard'},{p:'Select',price:'Sur devis',d:'Reporting avancé, CFO fractionné'}] },
+
+  // ============ ÉDUCATION & APPRENTISSAGE ============
+  { id:'khanmigo', name:'Khanmigo', category:'education', badge:'hot', tagline:"Tuteur IA de la Khan Academy, orienté pédagogie active.",
+    website:'https://www.khanmigo.ai', tags:['Tutorat','Écoles','Khan Academy'],
+    desc:"Khanmigo est le tuteur IA de la Khan Academy : il ne donne pas la réponse mais guide l'élève par questions successives, dans l'esprit de la pédagogie socratique.",
+    features:["Tutorat interactif ne dévoilant pas la réponse","Couverture des programmes maths, sciences, humanités","Outils enseignants pour préparer les cours","Version gratuite pour les enseignants américains"],
+    pricing:[{p:'Enseignants',price:'0 $',d:'Gratuit aux enseignants (US)'},{p:'Parents',price:'~4 $/mois',d:'Facturation annuelle par famille'}] },
+
+  { id:'duolingomax', name:'Duolingo Max', category:'education', badge:'', tagline:"Offre premium de Duolingo avec exercices interactifs par IA.",
+    website:'https://www.duolingo.com/plans', tags:['Langues','GPT','Conversation'],
+    desc:"Duolingo Max ajoute des fonctions IA (basées sur GPT-4) à l'app d'apprentissage des langues : jeux de rôle conversationnels et explications personnalisées des erreurs.",
+    features:["Jeux de rôle en langue étrangère avec IA","Explications personnalisées après chaque erreur","Mode Video Call pour s'entraîner à l'oral","Toutes les fonctions Super Duolingo incluses"],
+    pricing:[{p:'Duolingo Max',price:'~14 $/mois',d:'Facturation annuelle recommandée'}] },
+
+  { id:'coursera-coach', name:'Coursera Coach', category:'education', badge:'', tagline:"Assistant IA intégré aux cours Coursera pour clarifier les concepts.",
+    website:'https://www.coursera.org/coursera-plus', tags:['MOOC','Cours en ligne','Coach'],
+    desc:"Coursera Coach répond aux questions des apprenants pendant qu'ils suivent un cours en ligne, en s'appuyant sur les vidéos et lectures du cours pour éviter les hors-sujet.",
+    features:["Réponses ancrées dans le contenu du cours","Résumé automatique des vidéos longues","Suggestions de contenus complémentaires","Inclus dans Coursera Plus"],
+    pricing:[{p:'Coursera Plus',price:'~59 $/mois',d:'Ou ~399 $/an'}] },
+
+  { id:'brainly', name:'Brainly (Ginny AI)', category:'education', badge:'', tagline:"Communauté d'entraide scolaire avec assistant IA Ginny.",
+    website:'https://brainly.com', tags:['Devoirs','Communauté','Scolaire'],
+    desc:"Brainly est une communauté mondiale d'entraide scolaire, désormais dotée de Ginny AI, un assistant qui explique les corrections et détaille les étapes d'un exercice.",
+    features:["Communauté d'aide aux devoirs multilingue","Explications pas-à-pas générées par Ginny AI","Base de millions de questions déjà résolues","Scan d'exercice avec l'app mobile"],
+    pricing:[{p:'Free',price:'0 $',d:'Accès de base à la communauté'},{p:'Plus',price:'~5 $/mois',d:'Ginny AI illimitée et explications étendues'}] },
+
+  { id:'quizlet', name:'Quizlet Q-Chat', category:'education', badge:'', tagline:"Fiches de révision intelligentes avec tuteur conversationnel.",
+    website:'https://quizlet.com', tags:['Révisions','Flashcards','Étudiants'],
+    desc:"Quizlet propose depuis longtemps des flashcards partagées ; son mode Q-Chat ajoute un tuteur IA qui interroge l'étudiant sur ses fiches et adapte la difficulté.",
+    features:["Bibliothèque mondiale de flashcards partagées","Q-Chat : tuteur conversationnel adaptatif","Modes d'entraînement (test, association, dictée)","Application mobile largement utilisée"],
+    pricing:[{p:'Free',price:'0 $',d:'Accès de base'},{p:'Plus',price:'~8 $/mois',d:'Q-Chat illimité et fonctions avancées'}] },
+
+  { id:'socratic', name:'Socratic by Google', category:'education', badge:'', tagline:"App mobile Google qui scanne un exercice et l'explique.",
+    website:'https://socratic.org', tags:['Google','Mobile','Scolaire'],
+    desc:"Socratic est l'app mobile Google gratuite qui scanne un exercice scolaire et renvoie des explications, définitions et vidéos pour comprendre le sujet.",
+    features:["Scan d'un exercice via l'appareil photo","Explications par matière (maths, sciences, littérature)","Vidéos et articles pédagogiques agrégés","Gratuit et sans publicité"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Entièrement gratuit'}] },
+
+  { id:'coursebox', name:'Coursebox', category:'education', badge:'new', tagline:"Génération automatique de cours e-learning par IA.",
+    website:'https://coursebox.ai', tags:['E-learning','Formation','Formateurs'],
+    desc:"Coursebox permet aux formateurs et entreprises de générer automatiquement un cours e-learning complet à partir d'un document ou d'un simple sujet, quiz inclus.",
+    features:["Génération complète de cours depuis un PDF ou un URL","Création automatique de quiz et évaluations","Export SCORM pour LMS d'entreprise","Modes tuteur IA pour accompagner l'apprenant"],
+    pricing:[{p:'Free',price:'0 $',d:'2 cours par mois'},{p:'Pro',price:'~59 $/mois',d:'Cours illimités et branding'}] },
+
+  { id:'talkpal', name:'TalkPal', category:'education', badge:'', tagline:"Coach IA vocal pour pratiquer l'oral d'une langue étrangère.",
+    website:'https://talkpal.ai', tags:['Langues','Oral','Conversation'],
+    desc:"TalkPal permet de dialoguer à l'oral avec un tuteur IA dans plus de 50 langues, avec correction en direct de la prononciation et de la grammaire.",
+    features:["Conversation vocale en 50+ langues","Correction en direct des erreurs à l'oral","Scénarios contextuels (restaurant, entretien…)","Suivi de progression détaillé"],
+    pricing:[{p:'Free',price:'0 $',d:'Sessions limitées par jour'},{p:'Premium',price:'~12 $/mois',d:'Conversations illimitées'}] },
+
+  // ============ SEO & MARKETING DIGITAL ============
+  { id:'surfer', name:'Surfer SEO', category:'seo', badge:'hot', tagline:"Optimisation SEO on-page assistée par IA.",
+    website:'https://surferseo.com', tags:['SEO','On-page','Content editor'],
+    desc:"Surfer SEO analyse les pages positionnées sur Google pour un mot-clé donné et guide la rédaction d'un contenu optimisé, avec un scoring en temps réel.",
+    features:["Content Editor avec scoring SEO en direct","Analyse SERP automatisée par mot-clé","Audit de pages existantes et recommandations","Intégration Google Docs et WordPress"],
+    pricing:[{p:'Essential',price:'~89 $/mois',d:'Petits sites'},{p:'Advanced',price:'~179 $/mois',d:'Agences et sites plus larges'}] },
+
+  { id:'semrush', name:'Semrush', category:'seo', badge:'', tagline:"Suite marketing digital complète, enrichie d'assistants IA.",
+    website:'https://www.semrush.com', tags:['SEO','SEA','Concurrence'],
+    desc:"Semrush est une suite marketing digital tout-en-un (SEO, SEA, réseaux sociaux, contenu), progressivement enrichie d'assistants IA pour la rédaction et l'analyse.",
+    features:["Recherche de mots-clés et analyse de la concurrence","Audit technique de site web complet","Suivi de positionnement multi-géographies","Assistants IA pour la rédaction et le brief"],
+    pricing:[{p:'Pro',price:'~140 $/mois',d:'Freelance et TPE'},{p:'Guru',price:'~250 $/mois',d:'PME et agences'},{p:'Business',price:'~500 $/mois',d:'Gros volumes et API'}] },
+
+  { id:'ahrefs', name:'Ahrefs', category:'seo', badge:'', tagline:"Référence de l'analyse de backlinks et du SEO technique.",
+    website:'https://ahrefs.com', tags:['Backlinks','SEO technique','Audit'],
+    desc:"Ahrefs est reconnu pour son crawler web parmi les plus larges du marché : analyse de backlinks, mots-clés et audits techniques précis, avec assistants IA en complément.",
+    features:["Base de backlinks parmi les plus larges au monde","Explorateur de mots-clés multi-moteurs","Audit technique de site en profondeur","AI Content Helper pour briefs et outlines"],
+    pricing:[{p:'Lite',price:'~129 $/mois',d:'Freelance'},{p:'Standard',price:'~249 $/mois',d:'Petites agences'},{p:'Advanced',price:'~449 $/mois',d:'Gros sites et agences'}] },
+
+  { id:'buffer', name:'Buffer', category:'seo', badge:'', tagline:"Publication et analytics multi-réseaux avec assistant IA.",
+    website:'https://buffer.com', tags:['Réseaux sociaux','Planification','Analytics'],
+    desc:"Buffer permet de planifier et publier du contenu sur plusieurs réseaux sociaux, avec un assistant IA pour reformuler et décliner un post sur chaque plateforme.",
+    features:["Planification multi-réseaux (LinkedIn, Instagram, X, TikTok…)","AI Assistant pour reformuler et décliner un post","Analytics unifiés avec suggestions IA","Interface simple, adaptée aux petites équipes"],
+    pricing:[{p:'Free',price:'0 $',d:'3 comptes, 10 publications planifiées'},{p:'Essentials',price:'~6 $/mois/compte',d:'Publication illimitée'},{p:'Team',price:'~12 $/mois/compte',d:'Fonctions de collaboration'}] },
+
+  { id:'hootsuite', name:'Hootsuite OwlyWriter', category:'seo', badge:'', tagline:"Plateforme SMM entreprise avec assistant IA OwlyWriter.",
+    website:'https://www.hootsuite.com/owlywriter', tags:['SMM','Entreprise','Rédaction'],
+    desc:"Hootsuite propose OwlyWriter, un assistant IA qui génère des idées de posts, reformule des contenus existants et adapte le ton à chaque plateforme.",
+    features:["Génération d'idées et de posts par IA","Reformulation d'un contenu pour chaque réseau","Planification et publication multi-comptes","Analytics et reporting entreprise"],
+    pricing:[{p:'Professional',price:'~99 $/mois',d:'1 utilisateur, 10 réseaux'},{p:'Team',price:'~249 $/mois',d:'3 utilisateurs, 20 réseaux'}] },
+
+  { id:'adcreative', name:'AdCreative.ai', category:'seo', badge:'', tagline:"Génération de visuels publicitaires optimisés pour la conversion.",
+    website:'https://www.adcreative.ai', tags:['Publicité','Créatifs','Meta Ads'],
+    desc:"AdCreative.ai génère automatiquement des visuels publicitaires (image et texte) optimisés pour la conversion, prêts à être diffusés sur Meta, Google et LinkedIn Ads.",
+    features:["Génération de dizaines de créatifs en quelques secondes","Score de performance prédictif par visuel","Import direct vers Meta, Google, LinkedIn Ads","Analyse de créatifs concurrents"],
+    pricing:[{p:'Starter',price:'~29 $/mois',d:'10 crédits mensuels'},{p:'Pro',price:'~189 $/mois',d:'250 crédits mensuels'}] },
+
+  { id:'clearscope', name:'Clearscope', category:'seo', badge:'', tagline:"Optimisation SEO haut de gamme axée qualité éditoriale.",
+    website:'https://www.clearscope.io', tags:['SEO','Éditorial','Grands médias'],
+    desc:"Clearscope est utilisé par de nombreux grands médias pour optimiser le contenu SEO tout en gardant une exigence éditoriale : brief, recommandations lexicales et scoring.",
+    features:["Content brief détaillé par mot-clé","Recommandations lexicales et sémantiques","Score de pertinence éditoriale (A+ à F)","Intégration Google Docs et WordPress"],
+    pricing:[{p:'Essentials',price:'~189 $/mois',d:'Petits sites'},{p:'Business',price:'~475 $/mois',d:'Volumes plus larges'}] },
+
+  { id:'phrasee', name:'Phrasee', category:'seo', badge:'', tagline:"Génération et test de messages marketing optimisés par IA.",
+    website:'https://phrasee.co', tags:['Email marketing','Grandes marques','Optimisation'],
+    desc:"Phrasee cible les grandes marques : il génère et teste automatiquement les objets d'email, notifications push et titres publicitaires pour maximiser l'engagement.",
+    features:["Génération de milliers de variantes d'accroche","Optimisation en continu sur la performance réelle","Modèles adaptés à la voix de marque","Intégration avec les principales plateformes marketing"],
+    pricing:[{p:'Enterprise',price:'Sur devis',d:'Facturation adaptée aux grandes marques'}] },
+
+  // ============ JURIDIQUE ============
+  { id:'harvey', name:'Harvey', category:'juridique', badge:'hot', tagline:"Copilote IA pour cabinets d'avocats de premier plan.",
+    website:'https://www.harvey.ai', tags:['Cabinets d\'avocats','Rédaction juridique','Enterprise'],
+    desc:"Harvey est un copilote IA conçu pour les grands cabinets d'avocats internationaux, capable d'analyser des documents complexes, de rédiger des actes et de faire de la recherche juridique.",
+    features:["Analyse et résumé de documents juridiques longs","Recherche jurisprudentielle assistée","Rédaction assistée de contrats et de mémos","Déploiement dédié aux cabinets, avec confidentialité renforcée"],
+    pricing:[{p:'Enterprise',price:'Sur devis',d:'Réservé aux cabinets et entreprises'}] },
+
+  { id:'lexisplus', name:'Lexis+ AI', category:'juridique', badge:'', tagline:"Recherche juridique IA intégrée à la base LexisNexis.",
+    website:'https://www.lexisnexis.com/en-us/products/lexis-plus-ai.page', tags:['LexisNexis','Recherche','Jurisprudence'],
+    desc:"Lexis+ AI intègre les modèles IA à la base juridique LexisNexis : rédaction, résumé et recherche appuyés sur des sources jurisprudentielles vérifiables.",
+    features:["Recherche appuyée sur la base LexisNexis (sourcée)","Résumé automatique d'arrêts et de contrats","Rédaction d'actes assistée","Vérification des citations pour éviter les hallucinations"],
+    pricing:[{p:'Cabinet',price:'Sur devis',d:'Facturation par utilisateur'}] },
+
+  { id:'casetext', name:'CoCounsel (Thomson Reuters)', category:'juridique', badge:'', tagline:"Assistant IA juridique de Thomson Reuters (ex-Casetext).",
+    website:'https://www.thomsonreuters.com/en/artificial-intelligence/cocounsel.html', tags:['Thomson Reuters','Analyse','Contrats'],
+    desc:"CoCounsel (racheté par Thomson Reuters) réalise des tâches juridiques précises : revue de production, résumé de dépositions, analyse de contrats.",
+    features:["Analyse de contrats et détection de risques","Résumé de dépositions et pièces","Recherche jurisprudentielle avec sources","Intégration Word et environnement Thomson Reuters"],
+    pricing:[{p:'Cabinet',price:'Sur devis',d:'Facturation par utilisateur'}] },
+
+  { id:'donotpay', name:'DoNotPay', category:'juridique', badge:'', tagline:"« Robot avocat » grand public pour litiges du quotidien.",
+    website:'https://donotpay.com', tags:['Consommateur','Amendes','Litiges'],
+    desc:"DoNotPay se présente comme un « robot avocat » pour les particuliers : il aide à contester des amendes, obtenir des remboursements et rédiger des courriers formels.",
+    features:["Contestation automatisée d'amendes et de PV","Modèles de lettres de mise en demeure","Assistance pour annulation d'abonnements","Notifications sur les recours possibles"],
+    pricing:[{p:'Abonnement',price:'~36 $/3 mois',d:'Accès complet aux services'}] },
+
+  { id:'juribot', name:'Juribot', category:'juridique', badge:'', tagline:"Assistant juridique conversationnel orienté droit français.",
+    website:'https://www.juribot.fr', tags:['Droit français','Chat','Particuliers'],
+    desc:"Juribot est un assistant conversationnel qui répond à des questions de droit français courant (travail, immobilier, consommation), avec renvois aux textes de loi cités.",
+    features:["Réponses en langage naturel sur le droit français","Renvois aux articles de loi et à la jurisprudence","Modèles de courriers juridiques","Version gratuite avec quota quotidien"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Questions quotidiennes limitées'},{p:'Premium',price:'~10 €/mois',d:'Questions illimitées et modèles étendus'}] },
+
+  // ============ 3D, JEU VIDÉO & DESIGN PRODUIT ============
+  { id:'meshy', name:'Meshy', category:'design3d', badge:'new', tagline:"Génération de modèles 3D à partir de texte ou d'image.",
+    website:'https://www.meshy.ai', tags:['3D','Texte-vers-3D','Assets'],
+    desc:"Meshy transforme un prompt texte ou une image de référence en modèle 3D exportable (GLB, FBX, OBJ), utilisable pour des jeux, prototypes ou visualisations produit.",
+    features:["Texte-vers-3D et image-vers-3D en quelques minutes","Génération de textures PBR à partir d'un prompt","Export multi-formats (GLB, FBX, OBJ, USDZ)","API pour intégrer la génération dans un pipeline"],
+    pricing:[{p:'Free',price:'0 $',d:'200 crédits mensuels'},{p:'Pro',price:'~20 $/mois',d:'Crédits mensuels étendus'}] },
+
+  { id:'luma-genie', name:'Luma Genie', category:'design3d', badge:'', tagline:"Génération 3D texte-vers-modèle par Luma Labs.",
+    website:'https://lumalabs.ai/genie', tags:['Luma','3D','Prototype'],
+    desc:"Genie, développé par Luma Labs, produit rapidement des modèles 3D à partir d'un prompt texte, avec un rendu adapté au prototypage rapide en jeu vidéo ou en design.",
+    features:["Génération 3D en quelques secondes","Contrôle du style (réaliste, cartoon, low-poly)","Export GLB pour intégration en jeu","Utilisable via Discord et navigateur"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Générations quotidiennes limitées'},{p:'Pro',price:'~30 $/mois',d:'Crédits mensuels étendus'}] },
+
+  { id:'kaedim', name:'Kaedim', category:'design3d', badge:'', tagline:"Conversion d'une image 2D en modèle 3D de qualité production.",
+    website:'https://www.kaedim3d.com', tags:['Image vers 3D','Jeu vidéo','Studios'],
+    desc:"Kaedim cible les studios de jeu vidéo : à partir d'un concept 2D, il produit un modèle 3D optimisé (topologie propre, UVs, textures) prêt pour la production.",
+    features:["Topologie propre adaptée à l'animation","UVs et textures générées automatiquement","Optimisation du nombre de polygones","Support humain sur les rendus complexes"],
+    pricing:[{p:'Studio',price:'Sur devis',d:'Facturation adaptée aux studios'}] },
+
+  { id:'scenario', name:'Scenario', category:'design3d', badge:'', tagline:"Modèles d'image IA fine-tunés sur le style d'un jeu vidéo.",
+    website:'https://www.scenario.com', tags:['Jeu vidéo','Fine-tuning','Assets'],
+    desc:"Scenario permet aux studios de jeu vidéo de fine-tuner un modèle d'image IA sur leur style graphique, pour générer ensuite des assets cohérents avec la direction artistique.",
+    features:["Fine-tuning de modèles sur des assets existants","Génération d'assets 2D cohérents (sprites, textures)","Collaboration en équipe autour d'un même modèle","API pour intégrer la génération dans le pipeline"],
+    pricing:[{p:'Creator',price:'~19 $/mois',d:'Usage individuel'},{p:'Team',price:'~59 $/mois',d:'Collaboration en équipe'}] },
+
+  { id:'rosebud', name:'Rosebud AI', category:'design3d', badge:'new', tagline:"Création de mini-jeux vidéo par prompt en langage naturel.",
+    website:'https://rosebud.ai', tags:['Jeu vidéo','No-code','Prompt'],
+    desc:"Rosebud AI permet de créer et modifier de petits jeux vidéo web (2D et 3D) en langage naturel, sans écrire une ligne de code, avec partage en un clic.",
+    features:["Création de jeu par simple prompt en langage naturel","Support 2D et 3D avec moteur intégré","Partage web instantané des créations","Communauté de remix des jeux existants"],
+    pricing:[{p:'Free',price:'0 $',d:'Générations limitées'},{p:'Pro',price:'~15 $/mois',d:'Générations étendues et export'}] },
+
+  { id:'ludo', name:'Ludo.ai', category:'design3d', badge:'', tagline:"Idéation et documentation de concepts de jeux vidéo par IA.",
+    website:'https://ludo.ai', tags:['Game design','Idéation','Documentation'],
+    desc:"Ludo.ai est un outil de game design qui aide à générer des concepts de jeux, mécaniques, art styles et documents de design en s'appuyant sur une base de jeux existants.",
+    features:["Générateur de concepts et pitches de jeu","Analyse des tendances du marché mobile/PC","Génération de moodboards et concept art","Documents de game design assistés"],
+    pricing:[{p:'Starter',price:'~15 $/mois',d:"Idéation illimitée"},{p:'Pro',price:'~35 $/mois',d:"Analyses marché avancées"}] },
+
+  { id:'vizcom', name:'Vizcom', category:'design3d', badge:'', tagline:"Rendu de croquis produit en visuels réalistes par IA.",
+    website:'https://www.vizcom.ai', tags:['Design produit','Croquis','Rendus'],
+    desc:"Vizcom transforme un croquis de designer produit en rendu réaliste en temps réel, en respectant les proportions et la structure du dessin original.",
+    features:["Transformation croquis-vers-rendu en temps réel","Contrôle du style et des matériaux","Génération de vues multiples cohérentes","Collaboration en équipe autour d'un même projet"],
+    pricing:[{p:'Free',price:'0 $',d:"Générations quotidiennes limitées"},{p:'Pro',price:'~20 $/mois',d:"Génération illimitée et haute résolution"}] },
+
+  // Complément dans catégories existantes pour atteindre ~150
+  { id:'perplexity-labs', name:'Perplexity Labs', category:'chat', badge:'new', tagline:"Mode « Labs » de Perplexity pour projets de recherche approfondie.",
+    website:'https://www.perplexity.ai', tags:['Perplexity','Recherche','Deep research'],
+    desc:"Perplexity Labs est un mode de recherche approfondie qui produit des livrables structurés (rapports, tableaux, mini-dashboards) sur un sujet donné, en agrégeant plusieurs sources.",
+    features:["Rapports structurés multi-sources","Tableaux comparatifs générés automatiquement","Suivi d'un projet de recherche sur plusieurs sessions","Inclus dans l'abonnement Perplexity Pro"],
+    pricing:[{p:'Perplexity Pro',price:'20 $/mois',d:'Accès inclus'}] },
+
+  { id:'chatgpt-projects', name:'ChatGPT Projects', category:'productivite', badge:'new', tagline:"Espaces projets ChatGPT avec contexte et instructions persistants.",
+    website:'https://chatgpt.com', tags:['ChatGPT','Projets','Organisation'],
+    desc:"Les Projects de ChatGPT permettent de regrouper conversations, fichiers et instructions personnalisées autour d'un même sujet, pour garder un contexte cohérent sur la durée.",
+    features:["Regroupement de conversations par projet","Instructions personnalisées par projet","Fichiers partagés accessibles à toutes les conversations du projet","Disponible sur ChatGPT Plus, Team et Enterprise"],
+    pricing:[{p:'ChatGPT Plus',price:'20 $/mois',d:'Inclus dans Plus'}] },
+
+  { id:'anthropic-artifacts', name:'Claude Projects', category:'productivite', badge:'', tagline:"Espaces projets Claude avec base de connaissances partagée.",
+    website:'https://claude.ai', tags:['Claude','Projets','Base de connaissances'],
+    desc:"Claude Projects permet d'attacher des documents et instructions à un projet, pour que Claude s'appuie systématiquement dessus dans toutes les conversations du projet.",
+    features:["Base de connaissances propre à chaque projet","Instructions personnalisées persistantes","Partage de projets au sein d'une équipe (Team)","Inclus dans les plans Claude Pro et Team"],
+    pricing:[{p:'Claude Pro',price:'20 $/mois',d:'Inclus dans Pro'}] },
+
+  { id:'chatprd', name:'ChatPRD', category:'productivite', badge:'', tagline:"Copilote IA dédié aux Product Managers pour rédiger des PRD.",
+    website:'https://www.chatprd.ai', tags:['Product management','PRD','Spécifications'],
+    desc:"ChatPRD aide les Product Managers à rédiger des Product Requirement Documents structurés, en posant les bonnes questions et en s'appuyant sur les meilleures pratiques du métier.",
+    features:["Génération de PRD à partir d'un pitch produit","Frameworks intégrés (JTBD, RICE, OKR)","Coaching sur la clarté et les critères d'acceptation","Templates pour roadmaps et notes de release"],
+    pricing:[{p:'Free',price:'0 $',d:'Documents limités'},{p:'Pro',price:'~15 $/mois',d:'PRD illimités et coaching étendu'}] },
+
+  { id:'granola', name:'Granola', category:'productivite', badge:'new', tagline:"Prise de notes de réunion IA sans bot dans l'appel.",
+    website:'https://www.granola.ai', tags:['Réunions','Notes','Mac'],
+    desc:"Granola enregistre localement l'audio d'une réunion (Zoom, Meet, Teams) et le fusionne avec les notes prises manuellement, générant ensuite un résumé structuré, sans bot dans l'appel.",
+    features:["Enregistrement local, sans bot dans la visio","Fusion des notes manuelles et de la transcription","Résumés structurés générés après la réunion","Recherche transverse dans toutes les réunions"],
+    pricing:[{p:'Free',price:'0 $',d:'25 réunions'},{p:'Pro',price:'~14 $/mois',d:'Réunions illimitées'}] },
+
+  { id:'napkin', name:'Napkin', category:'productivite', badge:'', tagline:"Transformation de texte en visuels et diagrammes automatiques.",
+    website:'https://www.napkin.ai', tags:['Visuels','Diagrammes','Présentations'],
+    desc:"Napkin convertit un paragraphe de texte en visuels et diagrammes éditables (schémas, timelines, comparatifs), utiles pour rendre présentations et articles plus lisibles.",
+    features:["Génération automatique de visuels à partir d'un texte","Nombreux styles de schémas et diagrammes","Édition manuelle fine des visuels générés","Export image et intégration dans PowerPoint / Docs"],
+    pricing:[{p:'Gratuit',price:'0 $',d:'Génération illimitée en beta'}] },
+
+  { id:'perplexity-comet', name:'Comet (Perplexity)', category:'agents', badge:'new', tagline:"Navigateur agentique lancé par Perplexity, avec assistant IA intégré.",
+    website:'https://www.perplexity.ai/comet', tags:['Navigateur','Agent','Perplexity'],
+    desc:"Comet est le navigateur web développé par Perplexity : un assistant IA agentique y est intégré nativement pour résumer, comparer et agir sur les pages visitées.",
+    features:["Navigateur web complet avec assistant IA intégré","Résumés et comparatifs sur n'importe quelle page","Actions agentiques (remplir un formulaire, réserver…)","Synchronisation avec le compte Perplexity"],
+    pricing:[{p:'Compte Perplexity',price:'Variable',d:'Fonctions étendues avec Perplexity Pro'}] },
+
+  { id:'browserless', name:'Browserless', category:'agents', badge:'', tagline:"Navigateurs sans interface prêts à l'emploi pour agents IA.",
+    website:'https://www.browserless.io', tags:['Développeurs','Infra','Automatisation'],
+    desc:"Browserless fournit des navigateurs headless hébergés (Chromium, Firefox) prêts à être pilotés par des agents IA ou des scripts de scraping, avec API simple.",
+    features:["Navigateurs headless hébergés (Chromium, Firefox)","API compatible Puppeteer et Playwright","Scaling automatique pour gros volumes","Extension d'agent pour actions automatisées"],
+    pricing:[{p:'Free',price:'0 $',d:"Crédits d'essai"},{p:'Starter',price:'~50 $/mois',d:'Volumes légers'},{p:'Scale',price:'~200 $/mois',d:'Volumes plus importants'}] },
+
+  { id:'skyvern', name:'Skyvern', category:'agents', badge:'', tagline:"Agent open source pour automatiser les workflows web complexes.",
+    website:'https://www.skyvern.com', tags:['Open source','Web','Agent'],
+    desc:"Skyvern est un agent open source qui automatise des workflows sur des sites web complexes en s'adaptant aux évolutions d'interface, sans script à maintenir manuellement.",
+    features:["Automatisation de workflows web complexes","Adaptation aux changements d'interface","Open source et auto-hébergeable","Cloud managé pour usage en équipe"],
+    pricing:[{p:'Open source',price:'0 $',d:'Auto-hébergement gratuit'},{p:'Cloud',price:'Sur devis',d:'Version hébergée pour entreprises'}] },
 ];
 
 /* Informations spécifiques par outil : méthodes d'utilisation + FAQ */
@@ -1824,6 +2128,11 @@ const CAT_DESC = {
   productivite:"Automatisation des tâches bureautiques, notes et présentations.",
   agents:"Agents autonomes capables de planifier et d'exécuter des tâches complexes.",
   chat:"Assistants conversationnels généralistes pour discuter, rechercher et créer.",
+  finance:"Analyse financière, trading, comptabilité et budgétisation assistés par IA.",
+  education:"Tuteurs IA, création de cours, révisions et apprentissage des langues.",
+  seo:"Analyse SEO, publicité en ligne, réseaux sociaux et référencement automatisés.",
+  juridique:"Analyse de contrats, recherche juridique et rédaction d'actes assistées par IA.",
+  design3d:"Génération d'assets 3D, textures et éléments pour le jeu vidéo et le design produit.",
 };
 
 function renderCategorySections(){
